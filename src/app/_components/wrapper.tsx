@@ -13,13 +13,18 @@ import StoreProvider from '@/app/_components/provider'
  * @param {ReactNode} [children] The content to render in the main area.
  * @returns {JSX.Element} The rendered component.
  */
-export const Wrapper = ({ children }: { children?: ReactNode }) => {
+
+export type WrapperType = { children?: ReactNode }
+
+export const Wrapper = ({ children }: WrapperType) => {
   return (
     <>
-      <StoreProvider>
-        <main>{children}</main>
-        <Popup />
-      </StoreProvider>
+      <WrapSWRConfig>
+        <StoreProvider>
+          {children}
+          <Popup />
+        </StoreProvider>
+      </WrapSWRConfig>
     </>
   )
 }

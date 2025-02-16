@@ -1,8 +1,13 @@
-import './globals.css'
+import '@/styles/reset.scss'
+import '@/styles/index.scss'
+import '@/styles/global.scss'
+import 'material-symbols'
+import '@ant-design/v5-patch-for-react-19'
 
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { Be_Vietnam_Pro } from 'next/font/google'
 import type { Metadata } from 'next'
+import { Wrapper } from '@/app/_components/wrapper'
 
 const beVietNamePro = Be_Vietnam_Pro({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -21,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="vi">
       <head>
         <link
           rel="icon"
@@ -29,7 +34,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${beVietNamePro.className}  `}>
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+          <Wrapper>{children}</Wrapper>
+        </AntdRegistry>
       </body>
     </html>
   )

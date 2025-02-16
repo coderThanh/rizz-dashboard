@@ -3,7 +3,7 @@
 import { notifyError, notifySuccess } from '@/ultil/toast'
 import { useCallback, useState } from 'react'
 
-import { RestOptions } from '@/ultil/type'
+import { RestOptions } from '@/domain/type'
 
 const usePostAPI = (action: any, isAutoShowNotify: boolean = true) => {
   const [loading, setLoading] = useState(false)

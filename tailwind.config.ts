@@ -1,3 +1,4 @@
+import { transform } from 'next/dist/build/swc/generated-native'
 import type { Config } from 'tailwindcss'
 
 export default {
@@ -17,9 +18,14 @@ export default {
         warning: 'rgb(var(--color-warning))',
         star: 'rgb(var(--color-star))',
         title: 'rgb(var(--color-text-title))',
+        sub: 'rgb(var(--color-text-sub))',
         bg: 'rgb(var(--bg))',
         'bg-2nd': 'rgb(var(--bg-2nd))',
         'bg-opposite': 'rgb(var(--bg-opposite))',
+      },
+
+      boxShadow: {
+        '1': '0 3px 16px rgba(var(--box-shadow-1))',
       },
       fontSize: {
         'size-small': 'var(--size-small)',

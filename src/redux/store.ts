@@ -1,8 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import popupSlice, { updatePopupContent } from '@/redux/feature/popup'
 
+import dashboardAsideSlice from '@/redux/feature/main-aside'
+
 const rootReducers = combineReducers({
   popup: popupSlice,
+  dashboardAside: dashboardAsideSlice,
 })
 
 export const store = configureStore({

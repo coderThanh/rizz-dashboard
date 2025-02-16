@@ -15,11 +15,7 @@ export type Ward = {
   name: string
 }
 
-export type MenuItem = {
-  url?: string
-  text: string
-  chilren?: MenuItem[]
-}
+
 
 export type ImageEntiy = {
   src: string
@@ -34,4 +30,10 @@ export type Option = {
 
 export type RestOptions = {
   [key: string]: string | number | boolean | null | undefined
+}
+
+export type AsideMenuItemtype = {
+  url?: string
+  title: string
+  isPrefix?: boolean
 }

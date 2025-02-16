@@ -1,8 +1,8 @@
 @use '@/styles/_breakpoint' as _bp;
 
 :root {
-    --color-primary: 61, 170, 129;
-    --color-secondary: 29, 161, 242;
+    --color-primary: 34, 197, 94;
+    --color-secondary: 43, 45, 59;
     --color-alert: 246, 87, 87;
     --color-success: 22, 196, 127;
     --color-process: 63, 162, 246;
@@ -11,12 +11,14 @@
     --color-border: 33, 35, 34;
     --color-border-opposite: 255, 255, 255;
     --bg: 255, 255, 255;
-    --bg-2nd: 248, 248, 251;
+    --bg-2nd: 247, 249, 251;
     --bg-opposite: 75, 89, 102;
-    --color-text-sub: 119, 119, 119;
+    --color-text-sub: 113, 127, 167;
     --color-text-title: 75, 89, 102;
     --color-price: 75, 89, 102;
     --color-price-sale: 154, 161, 167;
+
+    --box-shadow-1: 142, 134, 171, .05;
 
     --ff-material-outline: 'Material Symbols Outlined';
     --ff-material-round: 'Material Symbols Rounded';
@@ -30,7 +32,10 @@
 
     --field-h: 45px;
 
-    --sticky-t: 182px;
+    --sticky-t: 0px;
+
+    --dashboard-side-w: 270px;
+    --dashboard-side-collapse-w: 70px;
 
     --size-ratio: 1.15;
     --size-small: 14px;
@@ -53,7 +58,9 @@
 
 body {
     color: rgb(var(--color-text-title));
+    background-color: rgb(var(--bg-2nd));
 }
+
 
 p {
     margin-bottom: 14px;
@@ -125,8 +132,8 @@ h6 {
 
 // Scrollbar css
 .scrollbar::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 5px;
+    height: 5px;
 }
 
 .scrollbar::-webkit-scrollbar-track {
@@ -134,12 +141,11 @@ h6 {
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(var(--bg-opposite), 15%);
+    background: rgb(var(--bg-opposite), 12%);
     border-radius: 100px;
 }
 
 // 
-
 .sticky {
     position: sticky;
     top: var(--sticky-t);
@@ -213,6 +219,7 @@ h6 {
         transform: rotate(360deg);
     }
 }
+
 
 // 
 .enty-content {
