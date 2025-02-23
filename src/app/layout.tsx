@@ -4,10 +4,11 @@ import '@/styles/global.scss'
 import 'material-symbols'
 import '@ant-design/v5-patch-for-react-19'
 
-import { AntdRegistry } from '@ant-design/nextjs-registry'
-import { Be_Vietnam_Pro } from 'next/font/google'
-import type { Metadata } from 'next'
-import { Wrapper } from '@/app/_components/wrapper'
+import {AntdRegistry} from '@ant-design/nextjs-registry'
+import {Be_Vietnam_Pro} from 'next/font/google'
+import type {Metadata} from 'next'
+import {Wrapper} from '@/app/_components/wrapper'
+import {ReactNode} from "react";
 
 const beVietNamePro = Be_Vietnam_Pro({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -23,21 +24,23 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
+
+
 }>) {
   return (
     <html lang="vi">
-      <head>
-        <link
-          rel="icon"
-          href="/assest/logo/favicon.ico"
-        />
-      </head>
-      <body className={`${beVietNamePro.className}  `}>
-        <AntdRegistry>
-          <Wrapper>{children}</Wrapper>
-        </AntdRegistry>
-      </body>
+    <head>
+      <link
+        rel="icon"
+        href="/asset/logo/favicon.ico"
+      />
+    </head>
+    <body className={`${beVietNamePro.className}  `}>
+    <AntdRegistry>
+      <Wrapper>{children}</Wrapper>
+    </AntdRegistry>
+    </body>
     </html>
   )
 }

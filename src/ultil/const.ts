@@ -12,4 +12,16 @@ export const PAGE_TITLE = 'Page title'
 
 export const PAGE_DESCRIPTION = 'Page description'
 
-export const PADDING_X = 16
+export const PAGE_KEYWORDS = 'Page keywords'
+
+export const COLOR_PRIMARY = 'rgb(34, 197, 94)'
+
+export const COLOR_SECONDARY = 'rgb(164, 171, 204)'
+
+export const COLOR_ALERT = 'rgb(246, 87, 87)'
+
+export const COLOR_SUCCESS = 'rgb(22, 196, 127)'
+
+export const COLOR_PROCESS = 'rgb(63, 162, 246)'
+
+export const COLOR_WARNING = 'rgb(255, 175, 0)'

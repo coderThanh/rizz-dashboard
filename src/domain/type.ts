@@ -15,8 +15,6 @@ export type Ward = {
   name: string
 }
 
-
-
 export type ImageEntiy = {
   src: string
   alt?: string
@@ -36,4 +34,18 @@ export type AsideMenuItemtype = {
   url?: string
   title: string
   isPrefix?: boolean
+}
+
+export type ListTitleType = {
+  title: string
+  materialIconName?: string
+  url?: string
+  onClick?: () => void
+}
+
+export type NotifyType = {
+  title: string
+  content: string
+  url?: string
+  time: string
 }

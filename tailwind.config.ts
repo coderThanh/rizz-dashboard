@@ -1,5 +1,5 @@
-import { transform } from 'next/dist/build/swc/generated-native'
-import type { Config } from 'tailwindcss'
+import {transform} from 'next/dist/build/swc/generated-native'
+import type {Config} from 'tailwindcss'
 
 export default {
   content: [
@@ -22,8 +22,9 @@ export default {
         bg: 'rgb(var(--bg))',
         'bg-2nd': 'rgb(var(--bg-2nd))',
         'bg-opposite': 'rgb(var(--bg-opposite))',
+        'border-low': 'rgb(var(--color-secondary),0.2)',
       },
-
+      spacing: {'default': '16px'},
       boxShadow: {
         '1': '0 3px 16px rgba(var(--box-shadow-1))',
       },
@@ -55,28 +56,28 @@ export default {
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          '0%': {opacity: '0'},
+          '100%': {opacity: '1'},
         },
         fadeInFromBottom: {
-          '0%': { transform: 'translateY(100%)' },
-          '100%': { transform: 'translateY(0)' },
+          '0%': {transform: 'translateY(100%)'},
+          '100%': {transform: 'translateY(0)'},
         },
         fadeOut: {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' },
+          '0%': {opacity: '1'},
+          '100%': {opacity: '0'},
         },
         fadeOutToBottom: {
-          '0%': { transform: 'translateY(0%)' },
-          '100%': { transform: 'translateY(100%)' },
+          '0%': {transform: 'translateY(0%)'},
+          '100%': {transform: 'translateY(100%)'},
         },
         fadeInFromLeft: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(0)' },
+          '0%': {transform: 'translateX(-100%)'},
+          '100%': {transform: 'translateX(0)'},
         },
         fadeOutToLeft: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
+          '0%': {transform: 'translateX(0%)'},
+          '100%': {transform: 'translateX(-100%)'},
         },
       },
     },

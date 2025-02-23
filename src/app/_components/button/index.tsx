@@ -16,7 +16,7 @@ export enum SystemButtonKind {
 
 export enum SystemButtonColor {
   primary = 'primary',
-  primaryTransparemt = 'primaryTransparemt',
+  primaryTransparent = 'primaryTransparent',
   white = 'white',
   whiteTransparent = 'whiteTransparent',
   dark = 'dark',
@@ -47,19 +47,21 @@ export type SystemButtonProps = {
 }
 
 // HTMLDivElement
-export default function SystemButton({
-  kind,
-  color,
-  url,
-  target,
-  className,
-  classText,
-  classInner,
-  text,
-  size,
-  children,
-  onClick,
-}: SystemButtonProps) {
+export default function SystemButton(
+  {
+    kind,
+    color,
+    url,
+    target,
+    className,
+    classText,
+    classInner,
+    text,
+    size,
+    children,
+    onClick,
+  }: SystemButtonProps
+) {
   return (
     <>
       <SystemLink
@@ -83,4 +85,17 @@ export default function SystemButton({
       </SystemLink>
     </>
   )
+}
+
+export const SystemButtonIcon = (props: SystemButtonProps) => {
+  return <SystemLink
+    className={`${props?.className ?? ''} `}
+    url={props?.url as any}
+    target={props?.target}>
+    <div
+      className={`${props?.classInner ?? ''} ${styles.btnIcon} ${styles[props?.color || 'primary']} `}
+      onClick={(event) => props?.onClick && props?.onClick(event)}>
+      {props?.children}
+    </div>
+  </SystemLink>
 }
