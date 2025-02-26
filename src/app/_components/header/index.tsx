@@ -24,7 +24,7 @@ export const Header = (props: HeaderProps) => {
   const dispatch = useDispatch()
 
   return (<div className={`${props?.className ?? ''} px-default py-[20px] flex items-center gap-[30px]`}>
-    <div className={'flex items-center gap-[30px]'}>
+    <div className={'flex items-center gap-[20px]'}>
       {/* Desktop */}
       <SystemButtonIcon className={'hidden md:block'} color={SystemButtonColor.white}
                         onClick={() => dispatch(changeAsideDesktopStatus(!isOpenDesktop))}>
@@ -35,7 +35,7 @@ export const Header = (props: HeaderProps) => {
                         onClick={() => dispatch(changeAsideMobileStatus(!isOpenMobile))}>
         <SvgMenu width={"24"} height={"24"}/>
       </SystemButtonIcon>
-      <p className={'hidden md:block flex-1 m-0 font-[600] text-size-3 text-title'}>Good morning, James!</p>
+      <p className={'hidden md:block flex-1 m-0 font-[600] text-size-3 text-title leading-[1.3]'}>Good morning, James!</p>
     </div>
 
     {/* Actions */}
@@ -46,7 +46,6 @@ export const Header = (props: HeaderProps) => {
     </div>
   </div>)
 }
-
 
 
 export const ActionAdd = () => {
@@ -178,19 +177,7 @@ export const ActionNotify = (props: ActionNotifyProps) => {
       ref={refPopup as LegacyRef<HTMLDivElement>}
       className={`absolute top-full right-0 bg-bg rounded-radius-1 border border-solid border-border-low shadow-1 w-[300px] z-50 ${isShow ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}>
       <p className={'p-[20px_20px_20px] mb-0  font-[500]'}>Notifications</p>
-      <ConfigProvider theme={{
-        components: {
-          Tabs: {
-            horizontalItemPadding: '0px 25px 5px',
-            itemSelectedColor: 'rgb(var(--color-text-title))',
-            horizontalItemGutter: 0,
-            horizontalMargin: '0',
-
-          }
-        }
-      }}>
-        <Tabs defaultActiveKey="1" items={items}/>
-      </ConfigProvider>
+      <Tabs defaultActiveKey="1" items={items}/>
     </div>
   </div>
 }

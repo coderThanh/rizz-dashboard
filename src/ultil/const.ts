@@ -25,3 +25,7 @@ export const COLOR_SUCCESS = 'rgb(22, 196, 127)'
 export const COLOR_PROCESS = 'rgb(63, 162, 246)'
 
 export const COLOR_WARNING = 'rgb(255, 175, 0)'
+
+export const COLOR_TEXT_TITLE = 'rgb(43, 45, 59)'
+
+export const COLOR_BG = 'rgb(255, 255, 255)'

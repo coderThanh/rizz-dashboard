@@ -1,8 +1,13 @@
-import React, { ReactNode } from 'react'
-import { SWRConfig, SWRConfiguration } from 'swr'
+import React, {ReactNode} from 'react'
+import {SWRConfig, SWRConfiguration} from 'swr'
 
 import Popup from '@/app/_components/popup/popup'
 import StoreProvider from '@/app/_components/provider'
+import {ConfigProvider} from "antd";
+
+import vi_VN from 'antd/locale/vi_VN'
+
+import 'dayjs/locale/vi'
 
 /**
  * The root component of the app.
@@ -16,45 +21,46 @@ import StoreProvider from '@/app/_components/provider'
 
 export type WrapperType = { children?: ReactNode }
 
-export const Wrapper = ({ children }: WrapperType) => {
-  return (
-    <>
-      <WrapSWRConfig>
-        <StoreProvider>
-          {children}
-          <Popup />
-        </StoreProvider>
-      </WrapSWRConfig>
-    </>
-  )
+export const Wrapper = ({children}: WrapperType) => {
+  return (<>
+    <ConfigProvider
+      theme={{
+        components: {
+          Tabs: {
+            horizontalItemPadding: '0px 25px 5px',
+            itemSelectedColor: 'rgb(var(--color-text-title))',
+            horizontalItemGutter: 0,
+            horizontalMargin: '0',
+
+          }, // Dropdown: {paddingBlock: '5px 12px 5px'},
+        }
+      }}
+      locale={{
+        ...vi_VN
+      }}
+    > < WrapSWRConfig> < StoreProvider> {children}
+      <Popup/>
+    </StoreProvider>
+    </WrapSWRConfig>
+    </ConfigProvider>
+  </>)
 }
 
-/**
- * Wrap SWRConfig component to handle global options.
- *
- * Global options will be merged with component's options.
- *
- * @param {SWRConfiguration} [options] - Global options for SWRConfig.
- * @param {ReactNode} [children] - Children components.
- * @returns {ReactElement} SWRConfig component with global options.
- */
-export default function WrapSWRConfig({
+
+export const WrapSWRConfig = ({
   options,
   children,
 }: {
   options?: SWRConfiguration
   children?: ReactNode
-}): ReactNode {
-  return (
-    <SWRConfig
-      value={{
-        revalidateOnFocus: false,
-        revalidateIfStale: false,
-        revalidateOnReconnect: true,
-        ...options,
-      }}
-    >
-      {children}
-    </SWRConfig>
-  )
+}): ReactNode => {
+  return (<SWRConfig
+    value={{
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: true, ...options,
+    }}
+  >
+    {children}
+  </SWRConfig>)
 }
