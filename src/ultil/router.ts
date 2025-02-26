@@ -1,3 +1,18 @@
 export const ROUTERS = {
   home: '/',
+  media: '/media',
+  products: '/products',
+  productDetail: '/productDetail',
+  productCategory: '/productCategory',
+  posts: '/posts',
+  postCategory: '/postCategory',
+  postDetail: '/postDetail',
+  orders: '/orders',
+  orderDetail: '/orderDetail',
+  users: '/users',
+  userDetail: '/userDetail',
+  reviews: '/reviews',
+  reviewDetail: '/reviewDetail',
+  comments: '/comments',
+  commentDetail: '/commentDetail',
 }

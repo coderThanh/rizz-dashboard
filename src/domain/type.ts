@@ -49,3 +49,30 @@ export type NotifyType = {
   url?: string
   time: string
 }
+
+export type CategoryType = {
+  title: string
+  description?: string
+  createdat?: string
+}
+
+export enum StatusPostEnum {public = 'public', draft = 'draft', inactive = 'inactive'}
+
+export interface ProductType {
+  title: string
+  code?: string | null
+  category?: CategoryType | null
+  description?: string | null
+  content?: string
+  store?: number | null
+  price?: number | null
+  status: string
+  thumnail?: ImageEntiy | null
+  images?: ImageEntiy[] | null
+  createdat: string
+}
+
+export interface ColumnProductType extends ProductType {
+  key: string
+}
+

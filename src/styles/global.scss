@@ -399,6 +399,13 @@ h6 {
   }
 }
 
+.dashboard-box {
+  padding: 20px;
+  border-radius: var(--radius-1);
+  background: rgb(var(--bg));
+  box-shadow: 0 3px 16px rgb(var(--bg-opposite), 0.05);
+}
+
 
 /* Responsive ---------------- */
 @media #{_bp.$max-w-sm} {

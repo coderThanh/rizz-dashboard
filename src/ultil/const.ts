@@ -2,6 +2,8 @@ export const TOKEN = 'TOKEN'
 
 export const DATE_FORMAT_VI = 'DD/MM/YYYY'
 
+export const TIME_FORMAT_VI = 'hh:mm a'
+
 export const LIMIT_FETCH = 12
 
 export const TIME_OUT_API = 30000

@@ -82,7 +82,7 @@ export const BoxSumaryChartSpline = (props: BoxSumaryChartSplineProps) => {
     }
   }
 
-  return <div className={`${props?.classname ?? ''} bg-bg shadow-1 rounded-radius-1`}>
+  return <div className={`${props?.classname ?? ''} dashboard-box !p-0`}>
     <div className={'grid grid-cols-[2fr_3fr] gap-[16px] p-[20px_20px_0]'}>
       <div>
         <div
@@ -236,7 +236,7 @@ export const BoxMonthlyIncomeAvg = (props: BoxMonthlyIncomeAvgProps) => {
 
   }
 
-  return <div className={`${props?.classname ?? ''} bg-bg shadow-1 rounded-radius-1`}>
+  return <div className={`${props?.classname ?? ''} dashboard-box !p-0`}>
     {/* Label ------ */}
     <div className={'flex items-center gap-[14px] p-[20px]'}>
       <p className={'mb-0 font-[500] text-title flex-1'}>Monthly Abg. Income</p>
@@ -307,7 +307,7 @@ export const BoxBarSmall = (props: BoxBarSmallProps) => {
     }
   }
 
-  return <div className={`${props?.classname ?? ''} bg-bg rounded-radius-1 shadow-1 p-[20px]`}>
+  return <div className={`${props?.classname ?? ''} dashboard-box`}>
     <div className={'flex gap-[14px] items-center mb-[15px]'}>
       <p className={'mb-0 font-[600] text-title flex-1'}>{props.title}</p>
       {props.isShowPeople && <div className={'flex gap-[5px] items-center'}>
@@ -366,7 +366,7 @@ export const BoxRencentOrder = (props: BoxRencentOrderProps) => {
       label: 'This year'
     },
   ]
-  return <div className={`${props?.classname ?? ''} bg-bg rounded-radius-1 shadow-1 p-[20px]`}>
+  return <div className={`${props?.classname ?? ''} dashboard-box`}>
     <div className="flex gap-[14px] items-center ">
       <p className={'mb-0 font-[600] text-title flex-1'}>Recents Order</p>
       <Dropdown

@@ -1,16 +1,15 @@
-import 'dayjs/locale/vi'
-
-import { DATE_FORMAT_VI, TOKEN } from '@/ultil/const'
-
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
+import 'dayjs/locale/vi';
 import utc from 'dayjs/plugin/utc'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+import { DATE_FORMAT_VI, TIME_FORMAT_VI, TOKEN } from '@/ultil/const'
+
 
 //  --------
-export const isConnectAPI = () =>
-  process.env.NEXT_PUBLIC_HAS_API_DB_CONECT == 'true'
+export const isConnectAPI = () => process.env.NEXT_PUBLIC_HAS_API_DB_CONECT == 'true'
 
-export const isMaintainMode = () =>
-  process.env.NEXT_PUBLIC_IS_MAINTAIN_MODE == 'true'
+export const isMaintainMode = () => process.env.NEXT_PUBLIC_IS_MAINTAIN_MODE == 'true'
 
 //  ------
 export const delay = (delayInms: number) => {
@@ -21,32 +20,23 @@ export const delay = (delayInms: number) => {
 export const isLogin = () => !!getItemLocalStorage(TOKEN)
 
 // -----------------Get/set/remove item localstorage-----------------------
-export const setItemLocalStorage = (key: string, value: any) =>
-  typeof localStorage !== 'undefined' && key && value
-    ? localStorage.setItem(key, JSON.stringify(value))
-    : null
+export const setItemLocalStorage = (key: string, value: any) => typeof localStorage !== 'undefined' && key && value ? localStorage.setItem(key, JSON.stringify(value)) : null
 
-export const getItemLocalStorage = (key: string | null = null) =>
-  typeof localStorage !== 'undefined' && key
-    ? JSON.parse(localStorage.getItem(key) ?? '""')
-    : null
+export const getItemLocalStorage = (key: string | null = null) => typeof localStorage !== 'undefined' && key ? JSON.parse(localStorage.getItem(key) ?? '""') : null
 
-export const removeItemLocalStorage = (
-  key: string | null = null,
-  options: any,
-) => {
-  if (typeof localStorage === 'undefined') {
+export const removeItemLocalStorage = (key: string | null = null, options: any,) => {
+  if(typeof localStorage === 'undefined') {
     return false
   }
-  const { removeAll } = options || { removeAll: false }
+  const {removeAll} = options || {removeAll: false}
 
-  if (removeAll) {
+  if(removeAll) {
     // Xoa het item o localstorage
     localStorage.clear()
     return true
   }
 
-  if (!key) {
+  if(!key) {
     return false
   }
 
@@ -63,7 +53,7 @@ export const removeItemLocalStorage = (
  * @returns
  */
 export const getQueryStringParameter = (name: string, url: string) => {
-  if (typeof window !== 'undefined') {
+  if(typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(url || window.location.search)
     return urlParams.get(name)
   }
@@ -75,10 +65,18 @@ export const getQueryStringParameter = (name: string, url: string) => {
  * @returns object
  */
 export const getWindowDimensions = () => {
-  if (typeof window === 'undefined') {
-    return { clientHeight: 0, clientWidth: 0, width: 0, height: 0 }
+  if(typeof window === 'undefined') {
+    return {
+      clientHeight: 0,
+      clientWidth: 0,
+      width: 0,
+      height: 0
+    }
   }
-  const { innerWidth: width, innerHeight: height } = window
+  const {
+          innerWidth: width,
+          innerHeight: height
+        } = window
   return {
     width: width ? width : 0,
     height: height ? height : 0,
@@ -91,18 +89,14 @@ export const getWindowDimensions = () => {
  * @returns
  */
 export const getSentenceFromCamelCase = (message: any) => {
-  if (!message) {
+  if(!message) {
     return
   }
-  const pattern =
-    /[^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$]/g
-  const messages = message.match(pattern)
+  const pattern    = /[^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$]/g
+  const messages   = message.match(pattern)
   let errorMessage = ''
-  for (let i = 0; i < messages?.length; i++) {
-    errorMessage +=
-      messages[i] === messages[i].toUpperCase()
-        ? ' ' + messages[i].toLowerCase()
-        : messages[i]
+  for(let i = 0; i < messages?.length; i++) {
+    errorMessage += messages[i] === messages[i].toUpperCase() ? ' ' + messages[i].toLowerCase() : messages[i]
   }
   return errorMessage.trim()
 }
@@ -114,7 +108,7 @@ export const getSentenceFromCamelCase = (message: any) => {
  */
 export const getRegExp = (type: string) => {
   let regex: any = null
-  switch (type) {
+  switch(type) {
     case 'email':
       regex = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g
       break
@@ -132,8 +126,7 @@ export const getRegExp = (type: string) => {
  * @param {*} url
  * @returns
  */
-export const isImage = (url: string) =>
-  url ? /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url) : false
+export const isImage = (url: string) => url ? /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url) : false
 
 /**
  *
@@ -141,7 +134,7 @@ export const isImage = (url: string) =>
  * @returns
  */
 export const isValidationPhoneNumber = (number: string, location = 'vi') => {
-  if (location === 'vi') {
+  if(location === 'vi') {
     return /([+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8})\b/.test(number)
   }
   return false
@@ -154,30 +147,28 @@ export const isValidationPhoneNumber = (number: string, location = 'vi') => {
  */
 export const validateBirthday = (birthday: string) => {
   let result = false
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
     return result
   }
-  const parts = birthday.split('-')
-  const now = new Date()
-  const year = parseInt(parts[0], 10)
+  const parts       = birthday.split('-')
+  const now         = new Date()
+  const year        = parseInt(parts[0], 10)
   const currentYear = now.getFullYear()
-  const month =
-    parts[1][0] === '0' ? parseInt(parts[1][1], 10) : parseInt(parts[1], 10)
-  const day =
-    parts[2][0] === '0' ? parseInt(parts[2][1], 10) : parseInt(parts[2], 10)
+  const month       = parts[1][0] === '0' ? parseInt(parts[1][1], 10) : parseInt(parts[1], 10)
+  const day         = parts[2][0] === '0' ? parseInt(parts[2][1], 10) : parseInt(parts[2], 10)
 
   result = true
 
-  if (year >= currentYear) {
+  if(year >= currentYear) {
     result = false
   }
-  if (currentYear - year < 18 || currentYear - year > 80) {
+  if(currentYear - year < 18 || currentYear - year > 80) {
     result = false
   }
-  if (month < 1 || month > 12) {
+  if(month < 1 || month > 12) {
     result = false
   }
-  if (day < 1 || day > 31) {
+  if(day < 1 || day > 31) {
     result = false
   }
 
@@ -191,17 +182,15 @@ export const getRandomInt = (min: number, max: number) => {
 }
 
 export const formatVideoTime = (seconds: number) => {
-  const hours = Math.floor(seconds / 3600)
-  const minutes = Math.floor((seconds % 3600) / 60)
+  const hours            = Math.floor(seconds / 3600)
+  const minutes          = Math.floor((seconds % 3600) / 60)
   const remainingSeconds = seconds % 60
 
-  return `${hours.toString().padStart(2, '0')}:${minutes
-    .toString()
-    .padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
 }
 
 export const copyBoard = (value = null) => {
-  if (!value) {
+  if(!value) {
     return
   }
   navigator.clipboard.writeText(value)
@@ -220,7 +209,7 @@ export const debounce = (func: any, waitFor = 300) => {
 export function parseQuerySlug(string: string, isLowerCase = false) {
   string.toString()
 
-  if (isLowerCase) string.toLowerCase()
+  if(isLowerCase) string.toLowerCase()
 
   return string.toString().replace('&', '').split(' ').join('-')
 }
@@ -232,9 +221,9 @@ export function parseSlugToString(slug: string) {
 export function removeObjectKeyEmpty(object: { [key: string]: any }) {
   var newObject: { [key: string]: any } = {}
 
-  for (const key in object) {
-    if (Object.hasOwnProperty.call(object, key)) {
-      if (object[key]) {
+  for(const key in object) {
+    if(Object.hasOwnProperty.call(object, key)) {
+      if(object[key]) {
         newObject[key] = object[key]
       }
     }
@@ -243,11 +232,11 @@ export function removeObjectKeyEmpty(object: { [key: string]: any }) {
 }
 
 export function generatString(length: number) {
-  let result = ''
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+  let result             = ''
+  const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
   const charactersLength = characters.length
-  let counter = 0
-  while (counter < length) {
+  let counter            = 0
+  while(counter < length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength))
     counter += 1
   }
@@ -255,30 +244,18 @@ export function generatString(length: number) {
 }
 
 export function parseVietnameseRemoveSign(string: string) {
-  const a =
-    'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'
-  const b =
-    'aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------'
+  const a = 'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'
+  const b = 'aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------'
   const p = new RegExp(a.split('').join('|'), 'g')
 
-  return string
-    .toString()
-    .toLowerCase()
-    .replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a')
-    .replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e')
-    .replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i')
-    .replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o')
-    .replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u')
-    .replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y')
-    .replace(/đ/gi, 'd')
-    .replace(p, (c) => b.charAt(a.indexOf(c)))
+  return string.toString().toLowerCase().replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a').replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e').replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i').replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o').replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u').replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y').replace(/đ/gi, 'd').replace(p, (c) => b.charAt(a.indexOf(c)))
 }
 
 export const isCurrentUrl = (url: string, routerUrl: string) => {
-  var isCurrent = false
+  var isCurrent    = false
   const indexQuery = routerUrl.toString().indexOf('?')
 
-  if (indexQuery != -1) {
+  if(indexQuery != -1) {
     const asPath = routerUrl.slice(0, indexQuery)
 
     isCurrent = asPath == url
@@ -289,14 +266,10 @@ export const isCurrentUrl = (url: string, routerUrl: string) => {
   return isCurrent
 }
 
-// -----
-export const formatDate = (date: string) => {
-  return dayjs(date).format(DATE_FORMAT_VI)
-}
 
 // ------
 export const toTitleCase = (text: string) => {
-  if (!text) return text
+  if(!text) return text
 
   var result = text[0].toUpperCase() + text.slice(1).toLowerCase()
 
@@ -306,13 +279,11 @@ export const toTitleCase = (text: string) => {
 // --------
 
 export const toCapitalizeCase = (text: string) => {
-  if (!text) return text
+  if(!text) return text
 
   var listText = text.toString().split(' ')
 
-  listText = listText.map(
-    (item) => item[0].toUpperCase() + item.slice(1).toLowerCase(),
-  )
+  listText = listText.map((item) => item[0].toUpperCase() + item.slice(1).toLowerCase(),)
 
   var result = listText.join(' ')
 
@@ -328,12 +299,7 @@ export const toCapitalizeCase = (text: string) => {
  * @param {string} ward - The ward component.
  * @return {string} The formatted address string.
  */
-export const parseAddressName = (
-  address = '',
-  province = '',
-  district = '',
-  ward = '',
-): string => {
+export const parseAddressName = (address = '', province = '', district = '', ward = '',): string => {
   var list = []
   list.push(address)
   list.push(ward)
@@ -354,15 +320,33 @@ export const parseAddressName = (
  * @return {string} The formatted string.
  */
 export const coverNumberToSummary = (num: number) => {
-  if (num >= 1000000000) {
+  if(num >= 1000000000) {
     return (num / 1000000000).toFixed(1) + 'b'
-  } else if (num >= 1000000) {
+  } else if(num >= 1000000) {
     return (num / 1000000).toFixed(1) + 'm'
-  } else if (num >= 1000) {
+  } else if(num >= 1000) {
     return (num / 1000).toFixed(1) + 'k'
   }
 
   return num.toLocaleString()
+}
+
+
+// -----
+export const dayFormatDate = (date: string) => {
+  return dayjs(date).locale('vi').format(DATE_FORMAT_VI)
+}
+
+export const dayFormatDateTime = (date: string) => {
+  dayjs(date).locale('vi')
+
+  return `${dayjs(date).format(DATE_FORMAT_VI)} lúc ${dayjs(date).format(TIME_FORMAT_VI)}`;
+}
+
+export const dayFromNow = (day: string) => {
+  dayjs.extend(relativeTime)
+
+  return dayjs(day).locale('vi').fromNow(false)
 }
 
 export const coverDateToCountFromToday = (day: Date) => {
@@ -370,33 +354,33 @@ export const coverDateToCountFromToday = (day: Date) => {
 
   const diffTimestemp = Date.now() - day.getTime()
 
-  if (diffTimestemp <= 0) {
+  if(diffTimestemp <= 0) {
     return dayjs(day).local().format(DATE_FORMAT_VI)
   }
 
   const dateCountFrom = dayjs(diffTimestemp).utc()
 
-  if (dateCountFrom.year() > 1970) {
+  if(dateCountFrom.year() > 1970) {
     return dayjs(day).local().format(DATE_FORMAT_VI)
   }
 
-  if (dateCountFrom.month() >= 1) {
+  if(dateCountFrom.month() >= 1) {
     return `${dateCountFrom.month()} tháng`
   }
 
-  if (dateCountFrom.date() > 1) {
+  if(dateCountFrom.date() > 1) {
     return `${dateCountFrom.date() - 1} ngày`
   }
 
-  if (dateCountFrom.hour() >= 1) {
+  if(dateCountFrom.hour() >= 1) {
     return `${dateCountFrom.hour()} giờ`
   }
 
-  if (dateCountFrom.minute() >= 1) {
+  if(dateCountFrom.minute() >= 1) {
     return `${dateCountFrom.minute()} phút`
   }
 
-  if (dateCountFrom.second() >= 1) {
+  if(dateCountFrom.second() >= 1) {
     return `${dateCountFrom.second()} giây`
   }
 }
