@@ -1,12 +1,13 @@
-import React, {ReactNode} from 'react'
-import {SWRConfig, SWRConfiguration} from 'swr'
+import React, { ReactNode } from 'react'
+import { Toaster } from "react-hot-toast";
+import { SWRConfig, SWRConfiguration } from 'swr'
 
 import Popup from '@/app/_components/popup/popup'
 import StoreProvider from '@/app/_components/provider'
 
 import '@ant-design/v5-patch-for-react-19';
 
-import {ConfigProvider} from "antd";
+import { ConfigProvider } from "antd";
 
 import vi_VN from 'antd/locale/vi_VN'
 
@@ -43,22 +44,15 @@ export const Wrapper = ({children}: WrapperType) => {
           colorPrimaryTextHover: '#57d181',
           colorPrimaryTextActive: '#22974c',
           colorBorder: 'rgb(var(--color-secondary),0.3)'
-        },
-        components: {
+        }, components: {
           Button: {
-            paddingInlineSM: 10,
-            primaryShadow: '',
-            dangerShadow: '',
-            defaultShadow: '',
-            contentFontSizeLG: 14,
-          },
-          Tabs: {
+            paddingInlineSM: 10, primaryShadow: '', dangerShadow: '', defaultShadow: '', contentFontSizeLG: 14,
+          }, Tabs: {
             horizontalItemPadding: '0px 25px 5px',
             itemSelectedColor: 'rgb(var(--color-text-title))',
             horizontalItemGutter: 0,
             horizontalMargin: '0',
-          },
-          Table: {
+          }, Table: {
             headerBg: 'rgb(246 246 250)',
             footerBg: 'rgb(246 246 250)',
             borderColor: 'rgb(var(--color-secondary),0.15)',
@@ -73,27 +67,28 @@ export const Wrapper = ({children}: WrapperType) => {
       locale={{
         ...vi_VN
       }}
-    > < WrapSWRConfig> < StoreProvider> {children}
-      <Popup/>
-    </StoreProvider>
-    </WrapSWRConfig>
+    >
+      < WrapSWRConfig>
+        < StoreProvider>
+          {children}
+          <Popup/>
+          <Toaster/>
+        </StoreProvider>
+      </WrapSWRConfig>
     </ConfigProvider>
   </>)
 }
 
 
 export const WrapSWRConfig = ({
-  options,
-  children,
+  options, children,
 }: {
   options?: SWRConfiguration
   children?: ReactNode
 }): ReactNode => {
   return (<SWRConfig
     value={{
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-      revalidateOnReconnect: true, ...options,
+      revalidateOnFocus: false, revalidateIfStale: false, revalidateOnReconnect: true, ...options,
     }}
   >
     {children}

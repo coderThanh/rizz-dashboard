@@ -152,7 +152,7 @@ export const DATA_PRODUCTS: ProductType[] = [
 ]
 
 
-export const DATA_CATEGORY_PRODUCT: CategoryType[] = [
+export const DATA_CATEGORY_PRODUCT: CategoryType[]             = [
   {
     "title": "Sports",
     "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
@@ -173,6 +173,35 @@ export const DATA_CATEGORY_PRODUCT: CategoryType[] = [
     "title": "Music",
     "description": "lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed",
     "createdat": "2024-09-04T21:44:48Z"
+  }
+]
+export const DATA_CATEGORY_PRODUCT_HAS_CHILREN: CategoryType[] = [
+  {
+    "title": "Sports", children: [
+      {
+        'title': 'Sport child',
+      }, {
+        'title': 'Sport child 2',
+      }, {
+        'title': 'Sport child 3',
+      },
+    ]
+  }, {
+    "title": "Life style", children: [
+      {
+        title: 'Life style child 1'
+      }, {
+        title: 'Life style child 2'
+      }, {
+        title: 'Life style child 3'
+      },
+    ]
+  }, {
+    "title": "Interior",
+  }, {
+    "title": "Ecommerce",
+  }, {
+    "title": "Music",
   }
 ]
 

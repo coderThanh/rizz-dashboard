@@ -1,24 +1,24 @@
-import {useDispatch, useSelector} from 'react-redux'
+import { ROUTERS } from "@/ultil/router";
+import { useDispatch, useSelector } from 'react-redux'
 
-import {RootState} from '@/redux/store'
-import {changeAsideDesktopStatus, changeAsideMobileStatus} from '@/redux/feature/main-aside'
-import {SystemButtonColor, SystemButtonIcon} from "@/app/_components/button";
+import { RootState } from '@/redux/store'
+import { changeAsideDesktopStatus, changeAsideMobileStatus } from '@/redux/feature/main-aside'
+import { SystemButtonColor, SystemButtonIcon } from "@/app/_components/button";
 import SvgMenu from "@/svg/menu";
 import SvgPlus from "@/svg/plus";
 import SvgNotification from "@/svg/notification";
 import SvgAccount from "@/svg/account";
-import {Dropdown, Empty, MenuProps, Tabs, TabsProps} from "antd";
+import { Dropdown, Empty, MenuProps, Tabs, TabsProps } from "antd";
 import SystemLink from "@/app/_components/link";
-import {LegacyRef, ReactNode, RefObject} from "react";
-import {ListTitleType, NotifyType} from "@/domain/type";
-import {UseEventClickOutside} from "@/presentation/hooks";
-import {ListTitle} from "@/app/_components/list-title";
+import { LegacyRef, ReactNode, RefObject } from "react";
+import { ListTitleType, NotifyType } from "@/domain/type";
+import { UseEventClickOutside } from "@/presentation/hooks";
+import { ListTitle } from "@/app/_components/list-title";
 
 type HeaderProps = { className?: string }
 export const Header = (props: HeaderProps) => {
   const {
-          isOpenDesktop,
-          isOpenMobile
+          isOpenDesktop, isOpenMobile
         } = useSelector((state: RootState) => state.dashboardAside,)
 
   const dispatch = useDispatch()
@@ -64,25 +64,21 @@ export const Header = (props: HeaderProps) => {
 export const ActionAdd = () => {
   const itemsAdd: MenuProps['items'] = [
     {
-      label: (<div>
+      label: (<SystemLink url={ROUTERS.productDetail}>
         New product
-      </div>),
-      key: '0',
+      </SystemLink>), key: '0',
     }, {
-      label: (<div>
+      label: (<SystemLink url={ROUTERS.orderDetail}>
         New order
-      </div>),
-      key: '1',
+      </SystemLink>), key: '1',
     }, {
-      label: (<div>
+      label: (<SystemLink url={ROUTERS.postDetail}>
         New post
-      </div>),
-      key: '2',
+      </SystemLink>), key: '2',
     }, {
-      label: (<div>
+      label: (<SystemLink url={ROUTERS.userDetail}>
         New user
-      </div>),
-      key: '3',
+      </SystemLink>), key: '3',
     },
   ]
 
@@ -107,9 +103,7 @@ type ActionNotifyProps = {
 }
 export const ActionNotify = (props: ActionNotifyProps) => {
   const {
-          refPopup,
-          changeShow,
-          isShow
+          refPopup, changeShow, isShow
         } = UseEventClickOutside(false)
 
   const notifies: NotifyType[] = [
@@ -142,9 +136,7 @@ export const ActionNotify = (props: ActionNotifyProps) => {
 
   const items: TabsProps['items'] = [
     {
-      key: '1',
-      label: 'All',
-      children: <div>
+      key: '1', label: 'All', children: <div>
         <div className={'max-h-[300px] overflow-x-hidden overflow-y-auto scrollbar pt-[10px] pb-[10px] '}>
           {notifies.map((item, index) => {
             return <SystemLink
@@ -166,9 +158,7 @@ export const ActionNotify = (props: ActionNotifyProps) => {
           all</SystemLink>
       </div>,
     }, {
-      key: '2',
-      label: 'Projects',
-      children: <div>
+      key: '2', label: 'Projects', children: <div>
         <div className={'max-h-[300px] overflow-x-hidden overflow-y-auto scrollbar pt-[10px] pb-[10px]'}>
           {notifies.slice(0, 3).map((item, index) => {
             return <SystemLink
@@ -186,9 +176,7 @@ export const ActionNotify = (props: ActionNotifyProps) => {
         </div>
       </div>
     }, {
-      key: '3',
-      label: 'Team',
-      children: <div><Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/></div>,
+      key: '3', label: 'Team', children: <div><Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/></div>,
     },
   ];
 
@@ -223,31 +211,24 @@ type ActionProfileProps = {
 
 export const ActionProfile = (props: ActionProfileProps) => {
   const {
-          refPopup,
-          changeShow,
-          isShow
+          refPopup, changeShow, isShow
         } = UseEventClickOutside(true)
 
   const accountItems: ListTitleType[] = [
     {
-      title: 'Profile',
-      materialIconName: 'person'
+      title: 'Profile', materialIconName: 'person'
     }, {
-      title: 'Earning',
-      materialIconName: 'account_balance_wallet'
+      title: 'Earning', materialIconName: 'account_balance_wallet'
     },
   ]
 
   const settingItems: ListTitleType[] = [
     {
-      title: 'Account settings',
-      materialIconName: 'settings'
+      title: 'Account settings', materialIconName: 'settings'
     }, {
-      title: 'Security',
-      materialIconName: 'lock'
+      title: 'Security', materialIconName: 'lock'
     }, {
-      title: 'Help center',
-      materialIconName: 'help'
+      title: 'Help center', materialIconName: 'help'
     },
   ]
 

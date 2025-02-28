@@ -15,7 +15,10 @@ export const PAGE_TITLE = 'Page title'
 export const PAGE_DESCRIPTION = 'Page description'
 
 export const PAGE_KEYWORDS = 'Page keywords'
+export const CKEDIT_LINCENSE_KEY = 'GPL'
 
+
+// Color for ApecChart
 export const COLOR_PRIMARY = 'rgb(34, 197, 94)'
 
 export const COLOR_SECONDARY = 'rgb(164, 171, 204)'

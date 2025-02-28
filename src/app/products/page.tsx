@@ -10,7 +10,8 @@ import { CategoryType, ColumnProductType } from "@/domain/type";
 import { getPriceWithCurrency } from "@/presentation/product-controller";
 import { dayFormatDateTime, dayFromNow, toTitleCase } from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
-import { Table, TableColumnsType, TableProps } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Popconfirm, Table, TableColumnsType, TableProps } from "antd";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 
@@ -58,31 +59,41 @@ export default function ProductsPage() {
           </div>
         }
       }, {
-        title: 'Category',
-        dataIndex: 'category',
-        render: (value: CategoryType) => value.title
+        title: 'Category', dataIndex: 'category', render: (value: CategoryType) => value.title
       }, {
-        title: 'Store',
-        dataIndex: 'store',
+        title: 'Store', dataIndex: 'store',
       }, {
         title: 'Price',
         dataIndex: 'price',
         render: (price) => <span className={'text-nowrap'}>{getPriceWithCurrency(price) ?? ''}</span>
       }, {
-        title: 'Status',
-        dataIndex: 'status',
-        render: (value) => <LabelPostStatus label={value}/>
+        title: 'Status', dataIndex: 'status', render: (value) => <LabelPostStatus label={value}/>
       }, {
         title: 'Created At',
         dataIndex: 'createdat',
         sortDirections: ['descend', 'ascend'],
-        render: (value) => <span className={'text-size-small-a leading-[1.4] block min-w-[180px]'}>{dayFormatDateTime(value)}</span>,
+        render: (value) =>
+          <span className={'text-size-small-a leading-[1.4] block min-w-[180px]'}>{dayFormatDateTime(value)}</span>,
         sorter: (a, b) => dayjs(a.createdat).unix() - dayjs(b.createdat).unix(),
       }, {
-        title: 'Actions',
-        render: (_, item) => <div className={'flex wrap gap-[10px] items-center'}>
-          <SystemLink className={'text-sub hover:text-primary transition-colors leading-[1]'}><span className={'material-symbols-rounded !text-[20px]'}>edit</span></SystemLink>
-          <SystemLink className={'text-sub hover:text-alert transition-colors leading-[1]'}><span className={'material-symbols-rounded !text-[20px]'}>delete</span></SystemLink>
+        title: 'Actions', render: (_, item) => <div className={'flex wrap gap-[10px] items-center'}>
+          <SystemLink
+            url={ROUTERS.productDetail}
+            className={'text-sub hover:text-primary transition-colors leading-[1]'}
+          >
+            <span className={'material-symbols-rounded text-[20px]'}>edit</span>
+          </SystemLink>
+          <Popconfirm
+            title="Delete the post"
+            description="Are you sure to delete this task?"
+            okText="Yes"
+            cancelText="No"
+            placement={'bottomRight'}
+          >
+            <button className={'text-sub hover:text-alert transition-colors leading-[1]'}>
+              <span className={'material-symbols-rounded text-[20px]'}>delete</span>
+            </button>
+          </Popconfirm>
         </div>
       },
     ])
@@ -101,8 +112,7 @@ export default function ProductsPage() {
           loading={columns.length === 0}
           rowClassName={'text-sub'}
           pagination={{
-            position: ['bottomCenter'],
-            pageSize: 10
+            position: ['bottomCenter'], pageSize: 10
           }}
           scroll={{x: true}}
         />

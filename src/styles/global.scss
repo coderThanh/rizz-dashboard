@@ -399,6 +399,27 @@ h6 {
   }
 }
 
+.sys-editor {
+  .ck-content {
+    min-height: var(--edit-min-h);
+    max-height: var(--edit-max-h);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb(var(--bg-opposite), 8%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(var(--bg-opposite), 12%);
+    }
+
+  }
+}
+
 .dashboard-box {
   padding: 20px;
   border-radius: var(--radius-1);

@@ -88,7 +88,7 @@ export const BoxSumaryChartSpline = (props: BoxSumaryChartSplineProps) => {
         <div
           className={'w-[60px] h-[60px] flex items-center justify-center border border-solid border-[rgb(var(--color-secondary),0.6)] rounded-[50%]'}
         >
-          <span className={'material-symbols-rounded text-sub !text-[30px] !font-[300]'}>money_bag</span>
+          <span className={'material-symbols-rounded text-sub text-[30px] !font-[300]'}>money_bag</span>
         </div>
         <div className={'text-[14px] font-[500] mt-[10px] '}>{props?.label}</div>
       </div>

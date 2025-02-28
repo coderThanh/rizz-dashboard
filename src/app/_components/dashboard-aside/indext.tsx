@@ -1,16 +1,16 @@
 'use client'
 
-import {useCallback, useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {usePathname} from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { usePathname } from 'next/navigation'
 
-import {AsideMenuItemtype} from '@/domain/type'
+import { AsideMenuItemtype } from '@/domain/type'
 import Image from 'next/image'
 import Link from 'next/link'
-import {ROUTERS} from '@/ultil/router'
-import {RootState} from '@/redux/store'
+import { ROUTERS } from '@/ultil/router'
+import { RootState } from '@/redux/store'
 import SystemLink from '@/app/_components/link'
-import {changeAsideDesktopStatus, changeAsideMobileStatus} from '@/redux/feature/main-aside'
+import { changeAsideDesktopStatus, changeAsideMobileStatus } from '@/redux/feature/main-aside'
 
 type DashBoardAsideProps = { className?: string }
 export const DashBoardAside = (props: DashBoardAsideProps) => {
@@ -22,16 +22,17 @@ export const DashBoardAside = (props: DashBoardAsideProps) => {
     dispatch(changeAsideDesktopStatus(true))
   }, [dispatch])
 
-  return (<div className={`${props?.className ?? ''} min-h-[100vh] fixed top-0 left-0 z-[100] shadow-1 hidden md:block`}>
-    <div
-      className={`bg-bg h-[100vh] overflow-x-hidden overflow-y-auto scrollbar    ${isOpenDesktop ? 'w-[var(--dashboard-side-w)]' : 'w-[var(--dashboard-side-collapse-w)] cursor-pointer'}`}
-      onClick={() => !isOpenDesktop && openAsideDesktop()}
-    >
-      <DashboardAsideContent
-        className={`${!isOpenDesktop ? 'pointer-events-none' : ''}`}
-      />
-    </div>
-  </div>)
+  return (
+    <div className={`${props?.className ?? ''} min-h-[100vh] fixed top-0 left-0 z-[100] shadow-1 hidden md:block`}>
+      <div
+        className={`bg-bg h-[100vh] overflow-x-hidden overflow-y-auto scrollbar    ${isOpenDesktop ? 'w-[var(--dashboard-side-w)]' : 'w-[var(--dashboard-side-collapse-w)] cursor-pointer'}`}
+        onClick={() => !isOpenDesktop && openAsideDesktop()}
+      >
+        <DashboardAsideContent
+          className={`${!isOpenDesktop ? 'pointer-events-none' : ''}`}
+        />
+      </div>
+    </div>)
 }
 
 export const DashBoardAsideMobile = () => {
@@ -92,11 +93,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="home"
       items={[
         {
-          url: '',
-          title: 'Analytics',
+          url: '', title: 'Analytics',
         }, {
-          url: ROUTERS.home,
-          title: 'Ecommerce',
+          url: ROUTERS.home, title: 'Ecommerce',
         },
       ]}
     />
@@ -109,14 +108,11 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="package_2"
       items={[
         {
-          url: ROUTERS.products,
-          title: 'Tất cả sản phẩm',
+          url: ROUTERS.products, title: 'Tất cả sản phẩm',
         }, {
-          url: ROUTERS.productDetail,
-          title: 'Thêm sản phẩm',
+          url: ROUTERS.productDetail, title: 'Thêm sản phẩm',
         }, {
-          url: ROUTERS.productCategory,
-          title: 'Danh mục sản phẩm',
+          url: ROUTERS.productCategory, title: 'Danh mục sản phẩm',
         },
       ]}
     />
@@ -125,11 +121,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="sell"
       items={[
         {
-          url: ROUTERS.orders,
-          title: 'Tất cả đơn hàng',
+          url: ROUTERS.orders, title: 'Tất cả đơn hàng',
         }, {
-          url: ROUTERS.orderDetail,
-          title: 'Thêm đơn hàng',
+          url: ROUTERS.orderDetail, title: 'Thêm đơn hàng',
         },
       ]}
     />
@@ -138,11 +132,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="reviews"
       items={[
         {
-          url: ROUTERS.reviews,
-          title: 'Tất cả đánh giá',
+          url: ROUTERS.reviews, title: 'Tất cả đánh giá',
         }, {
-          url: ROUTERS.reviewDetail,
-          title: 'Thêm đánh giá',
+          url: ROUTERS.reviewDetail, title: 'Thêm đánh giá',
         },
       ]}
     />
@@ -155,17 +147,13 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="article"
       items={[
         {
-          url: ROUTERS.posts,
-          title: 'Tất cả bài viết',
+          url: ROUTERS.posts, title: 'Tất cả bài viết',
         }, {
-          url: ROUTERS.postDetail,
-          title: 'Thêm bài viết',
+          url: ROUTERS.postDetail, title: 'Thêm bài viết',
         }, {
-          url: ROUTERS.postCategory,
-          title: 'Danh mục bài viết',
+          url: ROUTERS.productCategory, title: 'Danh mục bài viết',
         }, {
-          url: ROUTERS.postCategory,
-          title: 'Thẻ tag',
+          url: ROUTERS.productCategory, title: 'Thẻ tag',
         },
       ]}
     />
@@ -174,11 +162,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="rate_review"
       items={[
         {
-          url: ROUTERS.comments,
-          title: 'Tất cả bình luận',
+          url: ROUTERS.comments, title: 'Tất cả bình luận',
         }, {
-          url: ROUTERS.commentDetail,
-          title: 'Thêm bình luận',
+          url: ROUTERS.commentDetail, title: 'Thêm bình luận',
         },
       ]}
     />
@@ -191,8 +177,7 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="image"
       items={[
         {
-          url: ROUTERS.media,
-          title: 'Tất cả media',
+          url: ROUTERS.media, title: 'Tất cả media',
         }
       ]}
     />
@@ -201,11 +186,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="person"
       items={[
         {
-          url: ROUTERS.users,
-          title: 'Tất cả người dùng',
+          url: ROUTERS.users, title: 'Tất cả người dùng',
         }, {
-          url: ROUTERS.userDetail,
-          title: 'Hồ sơ',
+          url: ROUTERS.userDetail, title: 'Hồ sơ',
         },
       ]}
     />
@@ -218,11 +201,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="settings"
       items={[
         {
-          url: '',
-          title: 'Theme config',
+          url: '', title: 'Theme config',
         }, {
-          url: '',
-          title: 'Nội dung theme',
+          url: '', title: 'Nội dung theme',
         },
       ]}
     />
@@ -231,11 +212,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="folder_open"
       items={[
         {
-          url: '',
-          title: 'Menu item',
+          url: '', title: 'Menu item',
         }, {
-          url: '',
-          title: 'Menu item',
+          url: '', title: 'Menu item',
         },
       ]}
     />
@@ -244,11 +223,9 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="description"
       items={[
         {
-          url: '',
-          title: 'Menu item',
+          url: '', title: 'Menu item',
         }, {
-          url: '',
-          title: 'Menu item',
+          url: '', title: 'Menu item',
         },
       ]}
     />
@@ -326,7 +303,7 @@ export const AsideMenuItem = (props: AsideMenuItemProps) => {
       onClick={() => setIsCollapse(!isCollapse)}
     >
         <span
-          className={`material-symbols-rounded !font-[320] block w-[21px] h-[21px] !text-[21px]  translate-y-[-2px] relative`}
+          className={`material-symbols-rounded font-[320] block w-[21px] h-[21px] text-[21px]  translate-y-[-2px] relative`}
         >
           {props?.iconName ? props.iconName : 'question_mark'}
           {props.isNotify && (
@@ -338,7 +315,7 @@ export const AsideMenuItem = (props: AsideMenuItemProps) => {
           {props.title}
         </span>
       <span
-        className={`material-symbols-rounded font-[300]  !text-[18px] w-[18px] ${isOpenDesktop ? '' : '!hidden'}`}
+        className={`material-symbols-rounded font-[300]  text-[18px] w-[18px] ${isOpenDesktop ? '' : '!hidden'}`}
       >
           {isCollapse ? 'keyboard_arrow_right ' : 'keyboard_arrow_down'}
         </span>

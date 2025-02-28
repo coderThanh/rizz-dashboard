@@ -54,6 +54,8 @@ export type CategoryType = {
   title: string
   description?: string
   createdat?: string
+  parrentId?: string
+  children?: CategoryType[]
 }
 
 export enum StatusPostEnum {public = 'public', draft = 'draft', inactive = 'inactive'}
