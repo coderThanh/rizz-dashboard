@@ -1,6 +1,6 @@
 'use client'
 
-import { Field, FieldCateogry } from "@/app/_components/field/field";
+import { InputLabel, FieldCategory } from "@/app/_components/field/field";
 import { DATA_CATEGORY_PRODUCT_HAS_CHILREN } from "@/domain/data-demo";
 import { formatterPrice, getSymbolCurrency } from "@/presentation/product-controller";
 import { DATE_FORMAT_VI } from "@/ultil/const";
@@ -27,12 +27,12 @@ export const BoxProductDetailGeneral = (props: BoxProductDetailGeneralProps) => 
 
   return <div className={`${props?.classname ?? ''} dashboard-box mx-default`}>
     <h5 className={'text-[1rem] mb-[20px]'}>Tổng quan</h5>
-    <div className={'grid lg:grid-cols-2 gap-[20px_30px] items-start'}>
+    <div className={'grid lg:grid-cols-2 gap-[24px_30px] items-start'}>
 
       <div className={'grid gap-[24px]'}>
         {/*. */}
         <div className={`${fieldWrapClass}`}>
-          <Field
+          <InputLabel
             title={'Tiêu đề'}
             size={'small'}
             isRequire={true}
@@ -41,7 +41,7 @@ export const BoxProductDetailGeneral = (props: BoxProductDetailGeneralProps) => 
         </div>
         {/*. */}
         <div className={`${fieldWrapClass}`}>
-          <Field
+          <InputLabel
             title={'Giá bán thường'}
             size={'small'}
           />
@@ -54,7 +54,7 @@ export const BoxProductDetailGeneral = (props: BoxProductDetailGeneralProps) => 
         {/*. */}
         <div className={`${fieldWrapClass}`}>
           <div>
-            <Field
+            <InputLabel
               title={'Giá khuyến mãi'}
               size={'small'}
             />
@@ -73,7 +73,7 @@ export const BoxProductDetailGeneral = (props: BoxProductDetailGeneralProps) => 
         </div>
         {/* Calendar*/}
         {isShowCalendar && <div className={`${fieldWrapClass}`}>
-          <Field
+          <InputLabel
             title={'Ngày giảm giá'}
             size={'small'}
           />
@@ -96,14 +96,12 @@ export const BoxProductDetailGeneral = (props: BoxProductDetailGeneralProps) => 
         </div>}
       </div>
 
-      <div className="grid gap-[24px] items-start">
-        <div className={`grid items-start sm:grid-cols-[110px_1fr] gap-[10px_10px]`}>
-          <Field
-            title={'Danh mục'}
-            size={'small'}
-          />
-          <FieldCateogry values={DATA_CATEGORY_PRODUCT_HAS_CHILREN}/>
-        </div>
+      <div className={`grid items-start sm:grid-cols-[110px_1fr] gap-[3px_10px]`}>
+        <InputLabel
+          title={'Danh mục'}
+          size={'small'}
+        />
+        <FieldCategory values={DATA_CATEGORY_PRODUCT_HAS_CHILREN}/>
       </div>
     </div>
   </div>

@@ -1,57 +1,58 @@
-export type Province = {
+export interface Province {
   matt: string
   name: string
 }
 
-export type District = {
+export interface District {
   matt: string
   maqh: string
   name: string
 }
 
-export type Ward = {
+export interface Ward {
   mapx: string
   maqh: string
   name: string
 }
 
-export type ImageEntiy = {
+export interface ImageEntiy {
   src: string
   alt?: string
   title?: string
 }
 
-export type Option = {
+export interface Option {
   value?: string
   title: string
 }
 
-export type RestOptions = {
+export interface RestOptions {
   [key: string]: string | number | boolean | null | undefined
 }
 
-export type AsideMenuItemtype = {
+export interface AsideMenuItemtype {
   url?: string
   title: string
   isPrefix?: boolean
 }
 
-export type ListTitleType = {
+export interface ListTitleType {
   title: string
   materialIconName?: string
   url?: string
   onClick?: () => void
 }
 
-export type NotifyType = {
+export interface NotifyType {
   title: string
   content: string
   url?: string
   time: string
 }
 
-export type CategoryType = {
+export interface CategoryType {
   title: string
+  code: string
   description?: string
   createdat?: string
   parrentId?: string
@@ -78,3 +79,16 @@ export interface ColumnProductType extends ProductType {
   key: string
 }
 
+export interface ColumnCategoryType extends CategoryType {
+  key: string
+}
+
+export interface TreeSelectDataType {
+  value: string,
+  title: string,
+  children?: TreeSelectDataType[],
+  disabled?: boolean,
+  disableCheckbox?: boolean,
+  selectable?: boolean,
+  checkable?: boolean
+}

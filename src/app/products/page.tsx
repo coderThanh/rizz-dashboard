@@ -59,15 +59,20 @@ export default function ProductsPage() {
           </div>
         }
       }, {
-        title: 'Category', dataIndex: 'category', render: (value: CategoryType) => value.title
+        title: 'Category',
+        dataIndex: 'category',
+        render: (value: CategoryType) => value.title
       }, {
-        title: 'Store', dataIndex: 'store',
+        title: 'Store',
+        dataIndex: 'store',
       }, {
         title: 'Price',
         dataIndex: 'price',
         render: (price) => <span className={'text-nowrap'}>{getPriceWithCurrency(price) ?? ''}</span>
       }, {
-        title: 'Status', dataIndex: 'status', render: (value) => <LabelPostStatus label={value}/>
+        title: 'Status',
+        dataIndex: 'status',
+        render: (value) => <LabelPostStatus label={value}/>
       }, {
         title: 'Created At',
         dataIndex: 'createdat',
@@ -76,7 +81,8 @@ export default function ProductsPage() {
           <span className={'text-size-small-a leading-[1.4] block min-w-[180px]'}>{dayFormatDateTime(value)}</span>,
         sorter: (a, b) => dayjs(a.createdat).unix() - dayjs(b.createdat).unix(),
       }, {
-        title: 'Actions', render: (_, item) => <div className={'flex wrap gap-[10px] items-center'}>
+        title: 'Actions',
+        render: (_, item) => <div className={'flex wrap gap-[10px] items-center'}>
           <SystemLink
             url={ROUTERS.productDetail}
             className={'text-sub hover:text-primary transition-colors leading-[1]'}
@@ -112,7 +118,8 @@ export default function ProductsPage() {
           loading={columns.length === 0}
           rowClassName={'text-sub'}
           pagination={{
-            position: ['bottomCenter'], pageSize: 10
+            position: ['bottomCenter'],
+            pageSize: 10
           }}
           scroll={{x: true}}
         />

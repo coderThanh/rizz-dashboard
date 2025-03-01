@@ -1,6 +1,6 @@
 import { BoxContent, BoxDescriptionSort, BoxPostStatus } from "@/app/_components/box";
 import { DashboardLayout } from "@/app/_components/system-layout";
-import { BoxProductDetailGeneral } from "@/app/products/productDetail/sections";
+import { BoxProductDetailGeneral } from "@/app/products/product-detail/sections";
 import { getSymbolCurrency } from "@/presentation/product-controller";
 
 export default function ProductDetail() {

@@ -1,7 +1,8 @@
 'use client'
 
+import { SystemToolTip } from "@/app/_components/tooltip";
 import { CategoryType } from "@/domain/type";
-import { Checkbox } from "antd";
+import { Checkbox, TooltipProps } from "antd";
 
 type InputLabelProps = {
   classname?: string
@@ -9,25 +10,35 @@ type InputLabelProps = {
   htmlFor?: string
   size?: 'default' | 'small'
   isRequire?: boolean
+  tooltip?: string
+  placement?: TooltipProps['placement']
 }
 
-export const Field = (props: InputLabelProps) => {
+export const InputLabel = (props: InputLabelProps) => {
   return <label
     htmlFor={props.htmlFor}
-    className={`${props?.classname ?? ''}  inline-block mb-[5px] leading-[1.4] ${props?.size === 'small' ? 'text-size-small-a' : 'text-size-small'}`}
+    className={`${props?.classname ?? ''} inline-block mb-[8px] leading-[1.4] ${props?.size === 'small' ? 'text-size-small-a' : 'text-size-small'}`}
   >
     {props.title}
     {props.isRequire && <span className={'text-alert'}> *</span>}
+    {props?.tooltip && <>
+      {" "}
+      <SystemToolTip
+        title={props?.tooltip}
+        placement={props?.placement}
+        classname={`${props?.size === 'small' ? '!text-[16px]' : '!text-[19px]'}`}
+      />
+    </>}
   </label>
 }
 
 
-type FieldCateogryProps = {
+type FieldCategoryProps = {
   classname?: string
   values: CategoryType[]
 }
 
-export const FieldCateogry = (props: FieldCateogryProps) => {
+export const FieldCategory = (props: FieldCategoryProps) => {
   return <div
     className={`${props?.classname ?? ''} border border-border-low border-solid p-[15px] rounded-radius-1 overflow-y-auto scrollbar grid gap-[14px] max-h-[200px]`}
   >
@@ -46,4 +57,5 @@ export const FieldCateogry = (props: FieldCateogryProps) => {
     </div>)}
   </div>
 }
+
 
