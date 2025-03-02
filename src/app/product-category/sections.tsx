@@ -3,15 +3,19 @@
 import { InputLabel } from "@/app/_components/field/field";
 import SystemImage from "@/app/_components/img";
 import SystemLink from "@/app/_components/link";
-import { DATA_CATEGORY_PRODUCT, DATA_CATEGORY_PRODUCT_HAS_CHILREN } from "@/domain/data-demo";
-import { ColumnCategoryType, ImageEntiy } from "@/domain/type";
+import { UsePreviewImage } from "@/app/hooks/hook-file";
+import { DATA_CATEGORY_PRODUCT_HAS_CHILREN } from "@/domain/data-demo";
+import { ColumnCategoryType } from "@/domain/type";
 import { coverCategoryToColumnCategory, coverCategoryToTreeSelectData } from "@/presentation/cover-data";
-import { ROUTERS } from "@/ultil/router";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Input, InputNumber, Popconfirm, Select, Table, TableColumnsType, TreeSelect, Upload } from "antd";
+import {
+  Button, Input, InputNumber, Popconfirm, Select, Table, TableColumnsType, TreeSelect, Upload, UploadFile, Image
+} from "antd";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const FieldEditor = dynamic(() => import('@/app/_components/field/ckeditor'), {ssr: false})
+
 
 type BoxCreateProductCategoryProps = {
   classname?: string
@@ -19,6 +23,11 @@ type BoxCreateProductCategoryProps = {
 
 export const BoxCreateProductCategory = (props: BoxCreateProductCategoryProps) => {
   const isLoadinng = false
+
+  const {
+          ImagePreview,
+          handlePreview,
+        } = UsePreviewImage();
 
   return <div className={`${props?.classname ?? ''} dashboard-box`}>
     <h4 className={'text-[1rem] mb-[15px] font-[600] text-title'}>Thêm danh mục mới</h4>
@@ -65,7 +74,9 @@ export const BoxCreateProductCategory = (props: BoxCreateProductCategoryProps) =
           name="avatar"
           listType="picture-card"
           className="avatar-uploader"
-          showUploadList={false}
+          showUploadList={true}
+          onPreview={handlePreview}
+          maxCount={2}
         >
           <button
             type="button"
@@ -74,7 +85,10 @@ export const BoxCreateProductCategory = (props: BoxCreateProductCategoryProps) =
             <div style={{marginTop: 8}}>Upload</div>
           </button>
         </Upload>
+        <ImagePreview/>
+
       </div>
+
       {/* --- */}
       <div className={'overflow-hidden'}>
         <InputLabel
@@ -102,7 +116,7 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
       title: 'Ảnh',
       key: 'img',
       dataIndex: 'thumnail',
-      render: (img: ImageEntiy) => <div className={'w-[40px] h-[40px] relative z-[1]'}><SystemImage
+      render: () => <div className={'w-[40px] h-[40px] relative z-[1]'}><SystemImage
         alt={'thumnail'}
         ratio={100}
         radius={4}

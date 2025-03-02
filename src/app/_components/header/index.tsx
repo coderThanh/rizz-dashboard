@@ -12,7 +12,7 @@ import { Dropdown, Empty, MenuProps, Tabs, TabsProps } from "antd";
 import SystemLink from "@/app/_components/link";
 import { LegacyRef, ReactNode, RefObject } from "react";
 import { ListTitleType, NotifyType } from "@/domain/type";
-import { UseEventClickOutside } from "@/presentation/hooks-global";
+import { UseEventClickOutside } from "@/app/hooks/global-hook";
 import { ListTitle } from "@/app/_components/list-title";
 
 type HeaderProps = { className?: string }

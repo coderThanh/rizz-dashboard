@@ -8,10 +8,9 @@ import { TableProductsActions } from "@/app/products/sections";
 import { DATA_PRODUCTS, getImageThumbnailRandom } from "@/domain/data-demo";
 import { CategoryType, ColumnProductType } from "@/domain/type";
 import { getPriceWithCurrency } from "@/presentation/product-controller";
-import { dayFormatDateTime, dayFromNow, toTitleCase } from "@/ultil/helper";
+import { dayFormatDateTime, toTitleCase } from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
-import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Popconfirm, Table, TableColumnsType, TableProps } from "antd";
+import { Popconfirm, Table, TableColumnsType } from "antd";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 
@@ -22,23 +21,23 @@ export default function ProductsPage() {
     } as ColumnProductType
   }).sort((a, b) => dayjs(b.createdat).unix() - dayjs(a.createdat).unix())
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
-  };
-
-  const onChange: TableProps<ColumnProductType>['onChange'] = (pagination, filters, sorter, extra) => {
-  };
 
   const [columns, setColumns] = React.useState<TableColumnsType<ColumnProductType>>([])
 
   useEffect(() => {
     // because have random data
     setColumns([
-      Table.SELECTION_COLUMN, {
+      Table.SELECTION_COLUMN,
+      {
         fixed: 'left'
-      }, {
+      },
+      {
         title: 'Product name',
         dataIndex: 'title',
-        sortDirections: ['descend', 'ascend'],
+        sortDirections: [
+          'descend',
+          'ascend'
+        ],
         sorter: (a, b) => a.title.length - b.title.length,
         render: (_, item) => {
           return <div className={'flex gap-[10px] z-0 relative min-w-[240px]'}>
@@ -58,31 +57,40 @@ export default function ProductsPage() {
             </div>
           </div>
         }
-      }, {
+      },
+      {
         title: 'Category',
         dataIndex: 'category',
         render: (value: CategoryType) => value.title
-      }, {
+      },
+      {
         title: 'Store',
         dataIndex: 'store',
-      }, {
+      },
+      {
         title: 'Price',
         dataIndex: 'price',
         render: (price) => <span className={'text-nowrap'}>{getPriceWithCurrency(price) ?? ''}</span>
-      }, {
+      },
+      {
         title: 'Status',
         dataIndex: 'status',
         render: (value) => <LabelPostStatus label={value}/>
-      }, {
+      },
+      {
         title: 'Created At',
         dataIndex: 'createdat',
-        sortDirections: ['descend', 'ascend'],
+        sortDirections: [
+          'descend',
+          'ascend'
+        ],
         render: (value) =>
           <span className={'text-size-small-a leading-[1.4] block min-w-[180px]'}>{dayFormatDateTime(value)}</span>,
         sorter: (a, b) => dayjs(a.createdat).unix() - dayjs(b.createdat).unix(),
-      }, {
+      },
+      {
         title: 'Actions',
-        render: (_, item) => <div className={'flex wrap gap-[10px] items-center'}>
+        render: () => <div className={'flex wrap gap-[10px] items-center'}>
           <SystemLink
             url={ROUTERS.productDetail}
             className={'text-sub hover:text-primary transition-colors leading-[1]'}
@@ -112,9 +120,7 @@ export default function ProductsPage() {
         <Table<ColumnProductType>
           columns={columns}
           dataSource={dataSources}
-          rowSelection={{onChange: onSelectChange}}
           className={'mt-[30px] '}
-          onChange={onChange}
           loading={columns.length === 0}
           rowClassName={'text-sub'}
           pagination={{
