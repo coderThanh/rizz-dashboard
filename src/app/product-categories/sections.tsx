@@ -5,17 +5,17 @@ import SystemImage from "@/app/_components/img";
 import SystemLink from "@/app/_components/link";
 import { UsePreviewImage } from "@/app/hooks/hook-file";
 import { DATA_CATEGORY_PRODUCT_HAS_CHILREN } from "@/domain/data-demo";
-import { ColumnCategoryType } from "@/domain/type";
+import { CategoryType, TableDataType } from "@/domain/type";
 import { coverCategoryToColumnCategory, coverCategoryToTreeSelectData } from "@/presentation/cover-data";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { ROUTERS } from "@/ultil/router";
+import { DeleteOutlined, EditOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Button, Input, InputNumber, Popconfirm, Select, Table, TableColumnsType, TreeSelect, Upload, UploadFile, Image
 } from "antd";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const FieldEditor = dynamic(() => import('@/app/_components/field/ckeditor'), {ssr: false})
-
 
 type BoxCreateProductCategoryProps = {
   classname?: string
@@ -62,6 +62,7 @@ export const BoxCreateProductCategory = (props: BoxCreateProductCategoryProps) =
           treeData={coverCategoryToTreeSelectData(DATA_CATEGORY_PRODUCT_HAS_CHILREN)}
           placeholder={'Không có'}
           className={'w-full'}
+          treeDefaultExpandAll={true}
         />
       </div>
       {/* --- */}
@@ -109,7 +110,7 @@ type BoxTableProductCategoryProps = {
 }
 
 export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => {
-  const columns: TableColumnsType<ColumnCategoryType> = [
+  const columns: TableColumnsType<TableDataType<CategoryType>> = [
     Table.SELECTION_COLUMN,
     {fixed: 'left'},
     {
@@ -131,38 +132,54 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
       render: (text) => <SystemLink
         url={'#'}
         className={'transition text-title hover:text-primary'}
-      >{text}</SystemLink>
+      >{text}</SystemLink>,
+      sortDirections: [
+        'ascend',
+        'descend'
+      ],
+      sorter: (a, b) => 0,
     },
     {
       title: 'Vị trí',
       key: 'Order',
-      render: (_) => <span className={'text-sub'}>100</span>
+      render: (_) => <span className={'text-sub'}>100</span>,
+      sortDirections: [
+        'ascend',
+        'descend'
+      ],
+      sorter: (a, b) => 0,
     },
     {
       title: '',
       key: 'actions',
       className: 'min-w-[100px]',
-      render: (_) => <div className={'flex gap-[5px]'}>
-        <div className={'inline-flex w-[35px] h-[35px] items-center justify-center cursor-pointer text-process rounded-[50%] hover:bg-[rgb(var(--color-process),0.1)] transition-all'}>
-          <span className={'material-symbols-rounded text-[20px] font-[300]'}>edit</span>
-        </div>
+      render: (_) => <div className={'flex wrap gap-[5px] items-center'}>
+        <Button
+          href={ROUTERS.orderDetail}
+          shape={'circle'}
+          icon={<EditOutlined style={{fontSize: 16}}/>}
+          variant={'text'}
+          color={'blue'}
+        />
         <Popconfirm
-          title="Delete the task"
+          title="Delete the post"
           description="Are you sure to delete this task?"
           okText="Yes"
           cancelText="No"
-          placement={'topRight'}
+          placement={'bottomRight'}
         >
-          <div className={'inline-flex w-[35px] h-[35px] items-center justify-center cursor-pointer text-alert rounded-[50%] hover:bg-[rgb(var(--color-alert),0.1)] transition-all'}>
-            <span className={'material-symbols-rounded text-[20px] font-[300]'}>delete</span>
-          </div>
+          <Button
+            shape={'circle'}
+            icon={<DeleteOutlined style={{fontSize: 16}}/>}
+            variant={'text'}
+            color={'danger'}
+          />
         </Popconfirm>
-
       </div>
     },
   ]
 
-  const data: ColumnCategoryType[] = coverCategoryToColumnCategory(DATA_CATEGORY_PRODUCT_HAS_CHILREN)
+  const data: TableDataType<CategoryType>[] = coverCategoryToColumnCategory(DATA_CATEGORY_PRODUCT_HAS_CHILREN)
 
   return <div className={`${props?.classname ?? ''} dashboard-box`}>
     <div className={'flex flex-wrap justify-between gap-[10px_10px]'}>
@@ -197,13 +214,12 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
         >Tìm kiếm</Button>
       </div>
     </div>
-    <Table<ColumnCategoryType>
+    <Table<TableDataType<CategoryType>>
       columns={columns}
       dataSource={data}
       rowSelection={{}}
       expandable={{
         defaultExpandAllRows: true,
-        showExpandColumn: false
       }}
       className={'mt-[12px]'}
       scroll={{

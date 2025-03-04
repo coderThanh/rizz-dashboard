@@ -75,14 +75,6 @@ export interface ProductType {
   createdat: string
 }
 
-export interface ColumnProductType extends ProductType {
-  key: string
-}
-
-export interface ColumnCategoryType extends CategoryType {
-  key: string
-}
-
 export interface TreeSelectDataType {
   value: string,
   title: string,
@@ -92,3 +84,29 @@ export interface TreeSelectDataType {
   selectable?: boolean,
   checkable?: boolean
 }
+
+export const OrderStatusType: readonly ['pending', 'completed', 'canceled', 'shipping', 'draft'] = [
+  'pending',
+  'completed',
+  'canceled',
+  'shipping',
+  'draft'
+]
+
+export const OrderComeFromType: readonly  ['web', 'app', 'live'] = [
+  'web',
+  'app',
+  'live'
+]
+
+export interface OrderType {
+  id: string,
+  code: string,
+  status: (typeof OrderStatusType)[number],
+  comeForm: (typeof OrderComeFromType)[number],
+  total: number,
+  createdAt: string,
+  updateAt: string,
+}
+
+export type TableDataType<T> = T & { key: string }

@@ -1,6 +1,6 @@
 import { getBase64 } from "@/presentation/file-controller";
 import { Image, UploadFile } from "antd";
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, useState } from "react";
 
 export const UsePreviewImage = () => {
   const [previewOpen, setPreviewOpen]   = useState(false);

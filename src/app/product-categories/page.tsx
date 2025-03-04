@@ -1,5 +1,5 @@
 import { DashboardLayout } from "@/app/_components/system-layout";
-import { BoxCreateProductCategory, BoxTableProductCategory } from "@/app/product-category/sections";
+import { BoxCreateProductCategory, BoxTableProductCategory } from "@/app/product-categories/sections";
 
 export default function ProductCategoryPage() {
   return <DashboardLayout>

@@ -333,6 +333,10 @@ export const coverNumberToSummary = (num: number) => {
 
 
 // -----
+export const dayjsLocale = (date?: dayjs.ConfigType, format?: dayjs.OptionType, locale?: string, strict?: boolean) => {
+  return dayjs(date, format, locale, strict).locale('vi')
+}
+
 export const dayFormatDate = (date: string) => {
   return dayjs(date).locale('vi').format(DATE_FORMAT_VI)
 }

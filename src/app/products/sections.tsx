@@ -1,7 +1,7 @@
 'use client'
 
 import { StatusPostEnum } from "@/domain/type";
-import { UseEventClickOutside } from "@/app/hooks/global-hook";
+import { UseEventClickOutside } from "@/app/hooks/hook-global";
 import { ROUTERS } from "@/ultil/router";
 import { FilterOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Input, Select } from "antd";

@@ -93,9 +93,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="home"
       items={[
         {
-          url: '', title: 'Analytics',
-        }, {
-          url: ROUTERS.home, title: 'Ecommerce',
+          url: '',
+          title: 'Analytics',
+        },
+        {
+          url: ROUTERS.home,
+          title: 'Ecommerce',
         },
       ]}
     />
@@ -108,11 +111,16 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="package_2"
       items={[
         {
-          url: ROUTERS.products, title: 'Tất cả sản phẩm',
-        }, {
-          url: ROUTERS.productDetail, title: 'Thêm sản phẩm',
-        }, {
-          url: ROUTERS.productCategory, title: 'Danh mục sản phẩm',
+          url: ROUTERS.products,
+          title: 'Tất cả sản phẩm',
+        },
+        {
+          url: ROUTERS.productDetail,
+          title: 'Thêm sản phẩm',
+        },
+        {
+          url: ROUTERS.productCategories,
+          title: 'Danh mục sản phẩm',
         },
       ]}
     />
@@ -121,9 +129,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="sell"
       items={[
         {
-          url: ROUTERS.orders, title: 'Tất cả đơn hàng',
-        }, {
-          url: ROUTERS.orderDetail, title: 'Thêm đơn hàng',
+          url: ROUTERS.orders,
+          title: 'Tất cả đơn hàng',
+        },
+        {
+          url: ROUTERS.orderDetail,
+          title: 'Thêm đơn hàng',
         },
       ]}
     />
@@ -132,9 +143,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="reviews"
       items={[
         {
-          url: ROUTERS.reviews, title: 'Tất cả đánh giá',
-        }, {
-          url: ROUTERS.reviewDetail, title: 'Thêm đánh giá',
+          url: ROUTERS.reviews,
+          title: 'Tất cả đánh giá',
+        },
+        {
+          url: ROUTERS.reviewDetail,
+          title: 'Thêm đánh giá',
         },
       ]}
     />
@@ -147,13 +161,20 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="article"
       items={[
         {
-          url: ROUTERS.posts, title: 'Tất cả bài viết',
-        }, {
-          url: ROUTERS.postDetail, title: 'Thêm bài viết',
-        }, {
-          url: ROUTERS.productCategory, title: 'Danh mục bài viết',
-        }, {
-          url: ROUTERS.productCategory, title: 'Thẻ tag',
+          url: ROUTERS.posts,
+          title: 'Tất cả bài viết',
+        },
+        {
+          url: ROUTERS.postDetail,
+          title: 'Thêm bài viết',
+        },
+        {
+          url: ROUTERS.postCategories,
+          title: 'Danh mục bài viết',
+        },
+        {
+          url: ROUTERS.postTags,
+          title: 'Thẻ tag',
         },
       ]}
     />
@@ -162,9 +183,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="rate_review"
       items={[
         {
-          url: ROUTERS.comments, title: 'Tất cả bình luận',
-        }, {
-          url: ROUTERS.commentDetail, title: 'Thêm bình luận',
+          url: ROUTERS.comments,
+          title: 'Tất cả bình luận',
+        },
+        {
+          url: ROUTERS.commentDetail,
+          title: 'Thêm bình luận',
         },
       ]}
     />
@@ -177,7 +201,8 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="image"
       items={[
         {
-          url: ROUTERS.media, title: 'Tất cả media',
+          url: ROUTERS.media,
+          title: 'Tất cả media',
         }
       ]}
     />
@@ -186,9 +211,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="person"
       items={[
         {
-          url: ROUTERS.users, title: 'Tất cả người dùng',
-        }, {
-          url: ROUTERS.userDetail, title: 'Hồ sơ',
+          url: ROUTERS.users,
+          title: 'Tất cả người dùng',
+        },
+        {
+          url: ROUTERS.userDetail,
+          title: 'Hồ sơ',
         },
       ]}
     />
@@ -201,9 +229,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="settings"
       items={[
         {
-          url: '', title: 'Theme config',
-        }, {
-          url: '', title: 'Nội dung theme',
+          url: '',
+          title: 'Theme config',
+        },
+        {
+          url: '',
+          title: 'Nội dung theme',
         },
       ]}
     />
@@ -212,9 +243,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="folder_open"
       items={[
         {
-          url: '', title: 'Menu item',
-        }, {
-          url: '', title: 'Menu item',
+          url: '',
+          title: 'Menu item',
+        },
+        {
+          url: '',
+          title: 'Menu item',
         },
       ]}
     />
@@ -223,9 +257,12 @@ export const DashboardAsideContent = (props: DashboardAsideContentProps) => {
       iconName="description"
       items={[
         {
-          url: '', title: 'Menu item',
-        }, {
-          url: '', title: 'Menu item',
+          url: '',
+          title: 'Menu item',
+        },
+        {
+          url: '',
+          title: 'Menu item',
         },
       ]}
     />

@@ -1,4 +1,5 @@
-import {useCallback, useEffect, useRef, useState} from "react";
+import { notifyError, notifySuccess } from "@/ultil/toast";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const UseEventClickOutside = (AutoCloseClickInsite: boolean) => {
   const [isShow, setIsShow] = useState(false)
@@ -29,7 +30,10 @@ export const UseEventClickOutside = (AutoCloseClickInsite: boolean) => {
     return () => {
       document.removeEventListener('click', documentListener)
     }
-  }, [isShow, documentListener])
+  }, [
+    isShow,
+    documentListener
+  ])
 
   return {
     isShow,
@@ -38,3 +42,20 @@ export const UseEventClickOutside = (AutoCloseClickInsite: boolean) => {
   }
 }
 
+export const UseCopyToClipboard = () => {
+
+  const copyToClipboard = async(text: string) => {
+    if(!text) return
+
+    try {
+      await navigator.clipboard.writeText(text);
+      notifySuccess('Copied to clipboard');
+
+    } catch(error) {
+      notifyError('Failed to copy to clipboard');
+    }
+  }
+  return {
+    copyToClipboard
+  }
+}

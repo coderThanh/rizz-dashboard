@@ -6,23 +6,20 @@ import SystemLink from "@/app/_components/link";
 import { DashboardLayout } from "@/app/_components/system-layout";
 import { TableProductsActions } from "@/app/products/sections";
 import { DATA_PRODUCTS, getImageThumbnailRandom } from "@/domain/data-demo";
-import { CategoryType, ColumnProductType } from "@/domain/type";
+import { CategoryType, ProductType, TableDataType } from "@/domain/type";
+import { coverProductToColumnType } from "@/presentation/cover-data";
 import { getPriceWithCurrency } from "@/presentation/product-controller";
 import { dayFormatDateTime, toTitleCase } from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
-import { Popconfirm, Table, TableColumnsType } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Button, Popconfirm, Table, TableColumnsType } from "antd";
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 
 export default function ProductsPage() {
-  const dataSources: ColumnProductType[] = DATA_PRODUCTS.map((item) => {
-    return {
-      key: item.code, ...item
-    } as ColumnProductType
-  }).sort((a, b) => dayjs(b.createdat).unix() - dayjs(a.createdat).unix())
+  const dataSources: TableDataType<ProductType>[] = coverProductToColumnType(DATA_PRODUCTS).sort((a, b) => dayjs(b.createdat).unix() - dayjs(a.createdat).unix())
 
-
-  const [columns, setColumns] = React.useState<TableColumnsType<ColumnProductType>>([])
+  const [columns, setColumns] = React.useState<TableColumnsType<TableDataType<ProductType>>>([])
 
   useEffect(() => {
     // because have random data
@@ -38,7 +35,7 @@ export default function ProductsPage() {
           'descend',
           'ascend'
         ],
-        sorter: (a, b) => a.title.length - b.title.length,
+        sorter: (a, b) => 0,
         render: (_, item) => {
           return <div className={'flex gap-[10px] z-0 relative min-w-[240px]'}>
             <SystemImage
@@ -86,17 +83,18 @@ export default function ProductsPage() {
         ],
         render: (value) =>
           <span className={'text-size-small-a leading-[1.4] block min-w-[180px]'}>{dayFormatDateTime(value)}</span>,
-        sorter: (a, b) => dayjs(a.createdat).unix() - dayjs(b.createdat).unix(),
+        sorter: (a, b) => 0,
       },
       {
         title: 'Actions',
-        render: () => <div className={'flex wrap gap-[10px] items-center'}>
-          <SystemLink
-            url={ROUTERS.productDetail}
-            className={'text-sub hover:text-primary transition-colors leading-[1]'}
-          >
-            <span className={'material-symbols-rounded text-[20px]'}>edit</span>
-          </SystemLink>
+        render: () => <div className={'flex wrap gap-[5px] items-center'}>
+          <Button
+            href={ROUTERS.productDetail}
+            shape={'circle'}
+            icon={<EditOutlined style={{fontSize: 16}}/>}
+            variant={'text'}
+            color={'blue'}
+          />
           <Popconfirm
             title="Delete the post"
             description="Are you sure to delete this task?"
@@ -104,9 +102,12 @@ export default function ProductsPage() {
             cancelText="No"
             placement={'bottomRight'}
           >
-            <button className={'text-sub hover:text-alert transition-colors leading-[1]'}>
-              <span className={'material-symbols-rounded text-[20px]'}>delete</span>
-            </button>
+            <Button
+              shape={'circle'}
+              icon={<DeleteOutlined style={{fontSize: 16}}/>}
+              variant={'text'}
+              color={'danger'}
+            />
           </Popconfirm>
         </div>
       },
@@ -117,7 +118,8 @@ export default function ProductsPage() {
     <div className="dashboard-box mb-[20px] mx-default mt-[10px]">
       <TableProductsActions/>
       <div className="">
-        <Table<ColumnProductType>
+        <Table<TableDataType<ProductType>>
+          rowSelection={{}}
           columns={columns}
           dataSource={dataSources}
           className={'mt-[30px] '}
