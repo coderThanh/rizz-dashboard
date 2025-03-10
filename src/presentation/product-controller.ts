@@ -21,3 +21,7 @@ export const getSymbolCurrency = () => {
 export const formatterPrice = (value: number) => {
   return format(`#,###.##`, value, {enforceMaskSign: false})
 }
+
+export  const formaaterNumber = (value: number) => {
+  return format('#,###.', value, {enforceMaskSign: false})
+}

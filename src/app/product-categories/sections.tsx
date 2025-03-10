@@ -3,17 +3,17 @@
 import { InputLabel } from "@/app/_components/field/field";
 import SystemImage from "@/app/_components/img";
 import SystemLink from "@/app/_components/link";
-import { UsePreviewImage } from "@/app/hooks/hook-file";
+import { UsePreviewImage } from "@/hooks/file-hook";
 import { DATA_CATEGORY_PRODUCT_HAS_CHILREN } from "@/domain/data-demo";
 import { CategoryType, TableDataType } from "@/domain/type";
 import { coverCategoryToColumnCategory, coverCategoryToTreeSelectData } from "@/presentation/cover-data";
 import { ROUTERS } from "@/ultil/router";
 import { DeleteOutlined, EditOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import {
-  Button, Input, InputNumber, Popconfirm, Select, Table, TableColumnsType, TreeSelect, Upload, UploadFile, Image
+  Button, Input, InputNumber, Popconfirm, Select, Table, TableColumnsType, TreeSelect, Upload
 } from "antd";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React from "react";
 
 const FieldEditor = dynamic(() => import('@/app/_components/field/ckeditor'), {ssr: false})
 

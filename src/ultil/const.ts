@@ -6,6 +6,8 @@ export const TIME_FORMAT_VI = 'hh:mm a'
 
 export const LIMIT_FETCH = 12
 
+export const LIMIT_FETCH_API = 99
+
 export const TIME_OUT_API = 30000
 
 export const LOCALE = 'vi-vn'

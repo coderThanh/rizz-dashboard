@@ -429,6 +429,12 @@ h6 {
   box-shadow: 0 3px 16px rgb(var(--bg-opposite), 0.05);
 }
 
+.dashboard-box-title {
+  font-size: var(--size-2);
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
 
 /* Responsive ---------------- */
 @media #{_bp.$max-w-sm} {

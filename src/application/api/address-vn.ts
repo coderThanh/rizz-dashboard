@@ -1,4 +1,4 @@
-import { restTransport } from "@/application/api-by-axios";
+import { restTransport } from "@/application/transport-by-axios";
 import { RestOptions } from '@/domain/type'
 
 const {get} = restTransport()

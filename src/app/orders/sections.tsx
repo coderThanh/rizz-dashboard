@@ -2,7 +2,7 @@
 
 import { LabelOrderStatus } from "@/app/_components/label";
 import SystemLink from "@/app/_components/link";
-import { UseCopyToClipboard } from "@/app/hooks/hook-global";
+import { UseCopyToClipboard } from "@/hooks/ullity-hook";
 import { DATA_ORDER } from "@/domain/data-demo";
 import { OrderStatusType, OrderType, TableDataType } from "@/domain/type";
 import { coverOrderToColumntype } from "@/presentation/cover-data";
@@ -12,7 +12,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps, Popconfirm, Select, Table, TableProps, Tooltip } from "antd"
 import Search from "antd/es/input/Search";
 import dayjs from "dayjs";
-import React, { ReactNode } from "react";
+import React from "react";
 
 type TableOrdersProps = {
   classname?: string

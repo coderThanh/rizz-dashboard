@@ -1,5 +1,6 @@
 import { OrderStatusType, StatusPostEnum } from "@/domain/type";
 import { Tag, TagProps } from "antd";
+import { ReactNode } from "react";
 
 type LabelPostStatusProps = {
   classname?: string
@@ -8,7 +9,7 @@ type LabelPostStatusProps = {
 }
 
 export const LabelPostStatus = (props: LabelPostStatusProps) => {
-  let tagColor: TagProps['color'] = 'default';
+  let tagColor: TagProps['color'];
 
   switch(props.label) {
     case StatusPostEnum.public:
@@ -33,11 +34,13 @@ export const LabelPostStatus = (props: LabelPostStatusProps) => {
 
 type LabelOrderStatusProps = {
   classname?: string
+  size?: 'large' | 'default'
   label: typeof OrderStatusType[number]
+  icon?: ReactNode
 }
 
 export const LabelOrderStatus = (props: LabelOrderStatusProps) => {
-  let tagColor: TagProps['color'] = 'default';
+  let tagColor: TagProps['color'];
 
   switch(props.label) {
     case 'shipping':
@@ -58,8 +61,9 @@ export const LabelOrderStatus = (props: LabelOrderStatusProps) => {
   }
 
   return <Tag
+    icon={props?.icon}
     color={tagColor}
-    className={`${props?.classname ?? ''}`}
+    className={`${props?.classname ?? ''} ${props?.size == 'large' && '!text-[13px] !p-[3px_10px] !rounded-radius-1'}`}
   >
     {props.label}
   </Tag>
