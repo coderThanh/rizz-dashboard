@@ -7,7 +7,7 @@ import { DashboardLayout } from "@/app/_components/system-layout";
 import { TableProductsActions } from "@/app/products/sections";
 import { DATA_PRODUCTS, getImageThumbnailRandom } from "@/domain/data-demo";
 import { CategoryType, ProductType, TableDataType } from "@/domain/type";
-import { coverProductToColumnType } from "@/presentation/cover-data";
+import { coverEntityToColumnType } from "@/presentation/cover-data";
 import { getPriceWithCurrency } from "@/presentation/product-controller";
 import { dayFormatDateTime, toTitleCase } from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
@@ -17,7 +17,7 @@ import dayjs from "dayjs";
 import React, { useEffect } from "react";
 
 export default function ProductsPage() {
-  const dataSources: TableDataType<ProductType>[] = coverProductToColumnType(DATA_PRODUCTS).sort((a, b) => dayjs(b.createdat).unix() - dayjs(a.createdat).unix())
+  const dataSources: TableDataType<ProductType>[] = coverEntityToColumnType(DATA_PRODUCTS).sort((a, b) => dayjs(b.createdat).unix() - dayjs(a.createdat).unix())
 
   const [columns, setColumns] = React.useState<TableColumnsType<TableDataType<ProductType>>>([])
 
@@ -93,7 +93,7 @@ export default function ProductsPage() {
             shape={'circle'}
             icon={<EditOutlined style={{fontSize: 16}}/>}
             variant={'text'}
-            color={'blue'}
+            color={'default'}
           />
           <Popconfirm
             title="Delete the post"
@@ -106,7 +106,7 @@ export default function ProductsPage() {
               shape={'circle'}
               icon={<DeleteOutlined style={{fontSize: 16}}/>}
               variant={'text'}
-              color={'danger'}
+              color={'default'}
             />
           </Popconfirm>
         </div>

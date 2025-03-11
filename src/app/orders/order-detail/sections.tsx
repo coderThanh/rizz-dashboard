@@ -5,23 +5,55 @@ import SystemImage from "@/app/_components/img";
 import { LabelOrderStatus } from "@/app/_components/label";
 import SystemLink from "@/app/_components/link";
 import { DATA_PRODUCTS } from "@/domain/data-demo";
-import { OrderStatusType, ProductType, TableDataType } from "@/domain/type";
+import {
+  OrderStatusEnums,
+  StatusOrderType,
+  ProductType,
+  TableDataType
+} from "@/domain/type";
+
 import { UseAddressVN } from "@/hooks/ullity-hook";
-import { coverProductToColumnType } from "@/presentation/cover-data";
-import { formaaterNumber, formatterPrice, getPriceWithCurrency } from "@/presentation/product-controller";
-import { DATE_FORMAT_VI, LIMIT_FETCH_API } from "@/ultil/const";
-import { compareStringVietnamese, dayFormatDateTime, parseVietnameseRemoveSign, toTitleCase } from "@/ultil/helper";
+import {
+  coverEntityToColumnType,
+  translateCodeStatusToTitle
+} from "@/presentation/cover-data";
+import {
+  formaaterNumber,
+  getPriceWithCurrency
+} from "@/presentation/product-controller";
+import { DATE_FORMAT_VI } from "@/ultil/const";
+import {
+  compareStringVietnamese,
+  dayFormatDateTime,
+  toTitleCase
+} from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
 import { notifySuccess } from "@/ultil/toast";
 import {
-  CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, EllipsisOutlined, NodeIndexOutlined, PlusOutlined
+  CheckOutlined,
+  CloseOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  PlusOutlined
 } from "@ant-design/icons";
-import { Button, DatePicker, Dropdown, Input, InputNumber, Modal, Popconfirm, Select, Table } from "antd";
+import {
+  Button,
+  DatePicker,
+  Dropdown,
+  Input,
+  InputNumber,
+  Modal,
+  Popconfirm,
+  Select,
+  Table
+} from "antd";
 import { ColumnProps } from "antd/es/table";
 import dayjs from "dayjs";
-import { keys } from "lodash-es";
 import { DefaultOptionType } from "rc-select/es/Select";
-import { ReactNode, useState } from "react";
+import {
+  ReactNode,
+  useState
+} from "react";
 
 type BoxOrderInfoProps = {
   classname?: string
@@ -314,10 +346,10 @@ type BoxOrderCreateInfoProps = {
 }
 
 export const BoxOrderCreateInfo = (props: BoxOrderCreateInfoProps) => {
-  const optionsStatus = OrderStatusType.map((item) => {
+  const optionsStatus = OrderStatusEnums.map((item) => {
     return {
       value: item,
-      label: item,
+      label: toTitleCase(translateCodeStatusToTitle(item)),
     }
   })
 
@@ -360,7 +392,7 @@ export const BoxOrderCreateInfo = (props: BoxOrderCreateInfoProps) => {
         title={'Status order'}
         classname={'block w-full'}
       />
-      <Select<typeof OrderStatusType[number]>
+      <Select<StatusOrderType>
         defaultValue={'pending'}
         options={optionsStatus}
         className={'w-full'}
@@ -371,7 +403,7 @@ export const BoxOrderCreateInfo = (props: BoxOrderCreateInfoProps) => {
         title={'User'}
         classname={'block w-full'}
       />
-      <Select<typeof OrderStatusType[number]>
+      <Select<StatusOrderType>
         showSearch={true}
         options={optionsUser}
         className={'w-full'}
@@ -387,6 +419,12 @@ type BoxOrderActionProps = {
 }
 
 export const BoxOrderAction = (props: BoxOrderActionProps) => {
+  const optionsStatus = OrderStatusEnums.map((item) => {
+    return {
+      key: item,
+      label: toTitleCase(translateCodeStatusToTitle(item)),
+    }
+  })
 
   return <div className={`${props?.classname ?? ''} dashboard-box`}>
     <h4 className={'dashboard-box-title'}>Actions</h4>
@@ -405,12 +443,7 @@ export const BoxOrderAction = (props: BoxOrderActionProps) => {
           <Dropdown
             trigger={['click']}
             menu={{
-              items: OrderStatusType.map(item => {
-                return {
-                  key: item,
-                  label: toTitleCase(item)
-                }
-              })
+              items: optionsStatus
             }}
           >
             <div className={'relative cursor-pointer'}>
@@ -573,7 +606,7 @@ export const TableOrderItems = (props: TableOrderItemsProps) => {
     },
   ]
 
-  const data = coverProductToColumnType(DATA_PRODUCTS.slice(0, 5))
+  const data = coverEntityToColumnType(DATA_PRODUCTS.slice(0, 5))
 
   return <div className={`${props?.classname ?? ''}`}>
     <Table<TableDataType<ProductType>>

@@ -2,7 +2,8 @@
 
 import { LabelPostStatus } from "@/app/_components/label";
 import { SystemToolTip } from "@/app/_components/tooltip";
-import { StatusPostEnum } from "@/domain/type";
+import { StatusPostEnums } from "@/domain/type";
+import { translateCodeStatusToTitle } from "@/presentation/cover-data";
 import { dayFormatDateTime, toTitleCase } from "@/ultil/helper";
 import { notifySuccess } from "@/ultil/toast";
 import { CheckOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
@@ -19,10 +20,10 @@ type BoxPostStatusProps = {
 const FieldEditor = dynamic(() => import('@/app/_components/field/ckeditor'), {ssr: false})
 
 export const BoxPostStatus = (props: BoxPostStatusProps) => {
-  const status: MenuProps['items'] = Object.values(StatusPostEnum).map((item, index) => {
+  const status: MenuProps['items'] = Object.values(StatusPostEnums).map((item, index) => {
     return {
       key: index.toString(),
-      label: toTitleCase(item ?? ''),
+      label: toTitleCase(translateCodeStatusToTitle(item ?? '')),
     }
   })
 

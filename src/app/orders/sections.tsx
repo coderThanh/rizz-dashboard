@@ -4,12 +4,22 @@ import { LabelOrderStatus } from "@/app/_components/label";
 import SystemLink from "@/app/_components/link";
 import { UseCopyToClipboard } from "@/hooks/ullity-hook";
 import { DATA_ORDER } from "@/domain/data-demo";
-import { OrderStatusType, OrderType, TableDataType } from "@/domain/type";
-import { coverOrderToColumntype } from "@/presentation/cover-data";
-import { dayjsLocale, toTitleCase } from "@/ultil/helper";
+import {
+  OrderStatusEnums, StatusOrderType, OrderType, TableDataType
+} from "@/domain/type";
+import {
+  coverEntityToColumnType, translateCodeStatusToTitle, translateOrderComeFromToTitle
+} from "@/presentation/cover-data";
+import {
+  dayjsLocale, toTitleCase
+} from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Dropdown, MenuProps, Popconfirm, Select, Table, TableProps, Tooltip } from "antd"
+import {
+  DeleteOutlined, EditOutlined
+} from "@ant-design/icons";
+import {
+  Button, Dropdown, MenuProps, Popconfirm, Select, Table, TableProps, Tooltip
+} from "antd"
 import Search from "antd/es/input/Search";
 import dayjs from "dayjs";
 import React from "react";
@@ -21,7 +31,7 @@ type TableOrdersProps = {
 export const TableOrders = (props: TableOrdersProps) => {
   const {copyToClipboard} = UseCopyToClipboard()
 
-  const data = coverOrderToColumntype(DATA_ORDER).sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
+  const data = coverEntityToColumnType(DATA_ORDER).sort((a, b) => dayjs(b.createdAt).unix() - dayjs(a.createdAt).unix())
 
   const columns: TableProps<TableDataType<OrderType>>['columns'] = [
     Table.SELECTION_COLUMN,
@@ -58,10 +68,10 @@ export const TableOrders = (props: TableOrdersProps) => {
       dataIndex: 'status',
       render: (status) => {
 
-        const items: MenuProps['items'] = OrderStatusType.map((item) => {
+        const items: MenuProps['items'] = OrderStatusEnums.map((item) => {
           return {
             key: item,
-            label: toTitleCase(item),
+            label: toTitleCase(translateCodeStatusToTitle(item)),
           }
         })
         return <Dropdown
@@ -89,7 +99,7 @@ export const TableOrders = (props: TableOrdersProps) => {
         'descend',
         'ascend'
       ],
-      sorter: (a, b) => 0,
+      render: (value) => toTitleCase(translateOrderComeFromToTitle(value))
     },
     {
       title: '',
@@ -100,7 +110,7 @@ export const TableOrders = (props: TableOrdersProps) => {
             shape={'circle'}
             icon={<EditOutlined style={{fontSize: 16}}/>}
             variant={'text'}
-            color={'blue'}
+            color={'default'}
           />
           <Popconfirm
             title="Delete the post"
@@ -113,7 +123,7 @@ export const TableOrders = (props: TableOrdersProps) => {
               shape={'circle'}
               icon={<DeleteOutlined style={{fontSize: 16}}/>}
               variant={'text'}
-              color={'danger'}
+              color={'default'}
             />
           </Popconfirm>
         </div>
@@ -125,25 +135,25 @@ export const TableOrders = (props: TableOrdersProps) => {
     {/* Filter */}
     <div className={'mb-[24px] flex flex-wrap gap-[10px_20px] '}>
       <div className={'inline-flex gap-[6px] flex-1 sm:flex-none'}>
-        <Select
-          className={'min-w-[200px] flex-1'}
+        <Select<StatusOrderType | 'delete' | 'false'>
+          className={'min-w-[220px] flex-1'}
           defaultValue={'false'}
           options={[
             {
               value: 'false',
               label: 'Hành động hàng loạt'
             },
-            ...OrderStatusType.map((item) => {
+            ...OrderStatusEnums.map((item) => {
               return {
                 value: item,
-                label: `Chuyển sang ${item}`
+                label: `Chuyển sang ${translateCodeStatusToTitle(item)}`
               }
             }),
             {
               value: 'delete',
               label: 'Xoá đơn hàng'
             },
-          ] as { value: typeof OrderStatusType[number] | 'delete' | 'false', label: string }[]}
+          ]}
         />
         <Button
           variant={'filled'}

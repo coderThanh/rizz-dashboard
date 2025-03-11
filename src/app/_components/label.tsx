@@ -1,22 +1,28 @@
-import { OrderStatusType, StatusPostEnum } from "@/domain/type";
-import { Tag, TagProps } from "antd";
+import {
+  StatusCommentType, StatusOrderType, StatusPostType
+} from "@/domain/type";
+import { translateCodeStatusToTitle } from "@/presentation/cover-data";
+import { toTitleCase } from "@/ultil/helper";
+import {
+  Tag, TagProps
+} from "antd";
 import { ReactNode } from "react";
 
 type LabelPostStatusProps = {
   classname?: string
-  label: StatusPostEnum | string
-  size?: 'default' | 'large'
+  label: StatusPostType
+  size?: 'large'
 }
 
 export const LabelPostStatus = (props: LabelPostStatusProps) => {
   let tagColor: TagProps['color'];
 
   switch(props.label) {
-    case StatusPostEnum.public:
+    case 'public':
       tagColor = 'processing';
       break;
-    case StatusPostEnum.inactive:
-      tagColor = 'red';
+    case 'inactive':
+      tagColor = 'error';
       break;
 
     default:
@@ -24,18 +30,17 @@ export const LabelPostStatus = (props: LabelPostStatusProps) => {
   }
 
   return <Tag
-    // bordered={false}
     color={tagColor}
     className={`${props?.classname ?? ''} !m-0 capitalize font-[500] ${props.size === 'large' ? '!text-size-small !p-[5px_10px] !rounded-radius-1' : ''}`}
   >
-    {props.label}
+    {toTitleCase(translateCodeStatusToTitle(props.label))}
   </Tag>
 }
 
 type LabelOrderStatusProps = {
   classname?: string
   size?: 'large' | 'default'
-  label: typeof OrderStatusType[number]
+  label: StatusOrderType
   icon?: ReactNode
 }
 
@@ -44,16 +49,19 @@ export const LabelOrderStatus = (props: LabelOrderStatusProps) => {
 
   switch(props.label) {
     case 'shipping':
-      tagColor = 'orange';
+      tagColor = 'purple';
       break;
     case 'pending':
-      tagColor = 'processing';
+      tagColor = 'warning';
       break;
     case 'canceled':
-      tagColor = 'red';
+      tagColor = 'error';
       break;
     case 'completed':
       tagColor = 'success';
+      break;
+    case 'processing':
+      tagColor = 'processing';
       break;
 
     default:
@@ -65,6 +73,39 @@ export const LabelOrderStatus = (props: LabelOrderStatusProps) => {
     color={tagColor}
     className={`${props?.classname ?? ''} ${props?.size == 'large' && '!text-[13px] !p-[3px_10px] !rounded-radius-1'}`}
   >
-    {props.label}
+    {toTitleCase(translateCodeStatusToTitle(props.label))}
+  </Tag>
+}
+
+type LabelCommentStatusProps = {
+  classname?: string
+  size?: 'large' | 'default'
+  label: StatusCommentType
+  icon?: ReactNode
+}
+
+export const LabelCommentStatus = (props: LabelCommentStatusProps) => {
+  let tagColor: TagProps['color'];
+
+  switch(props.label) {
+    case 'public':
+      tagColor = 'processing';
+      break;
+    case 'waiting':
+      tagColor = 'warning';
+      break;
+    case 'inactive':
+      tagColor = 'error';
+      break;
+    default:
+      tagColor = 'default'
+  }
+
+  return <Tag
+    icon={props?.icon}
+    color={tagColor}
+    className={`${props?.classname ?? ''} ${props?.size == 'large' && '!text-[13px] !p-[3px_10px] !rounded-radius-1'}`}
+  >
+    {toTitleCase(translateCodeStatusToTitle(props.label))}
   </Tag>
 }

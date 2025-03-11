@@ -1,6 +1,6 @@
 'use client'
 
-import { StatusPostEnum } from "@/domain/type";
+import { StatusPostEnums } from "@/domain/type";
 import { UseEventClickOutside } from "@/hooks/ullity-hook";
 import { ROUTERS } from "@/ultil/router";
 import { FilterOutlined, PlusOutlined } from "@ant-design/icons";
@@ -25,7 +25,7 @@ export const TableProductsActions = (props: TableProductsActionsProps) => {
     <Checkbox key={'4'}>Inmertior</Checkbox>,
   ]
 
-  const statusItems: ReactNode[] = Object.values(StatusPostEnum).map((item, index) => {
+  const statusItems: ReactNode[] = Object.values(StatusPostEnums).map((item, index) => {
     return <Checkbox key={index + 1}>{item}</Checkbox>
   })
 

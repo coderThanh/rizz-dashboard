@@ -23,7 +23,9 @@ import 'dayjs/locale/vi'
  * @returns {JSX.Element} The rendered component.
  */
 
-export type WrapperType = { children?: ReactNode }
+export type WrapperType = {
+  children?: ReactNode
+}
 
 export const Wrapper = ({children}: WrapperType) => {
   return (<>
@@ -44,15 +46,23 @@ export const Wrapper = ({children}: WrapperType) => {
           colorPrimaryTextHover: '#57d181',
           colorPrimaryTextActive: '#22974c',
           colorBorder: 'rgb(var(--color-secondary),0.3)'
-        }, components: {
+        },
+        components: {
           Button: {
-            paddingInlineSM: 10, primaryShadow: '', dangerShadow: '', defaultShadow: '', contentFontSizeLG: 14,
-          }, Tabs: {
+            paddingInlineSM: 10,
+            primaryShadow: '',
+            dangerShadow: '',
+            defaultShadow: '',
+            contentFontSizeLG: 14,
+            textTextColor: 'rgb(var(--color-text-sub))',
+          },
+          Tabs: {
             horizontalItemPadding: '0px 25px 5px',
             itemSelectedColor: 'rgb(var(--color-text-title))',
             horizontalItemGutter: 0,
             horizontalMargin: '0',
-          }, Table: {
+          },
+          Table: {
             headerBg: 'rgb(246 246 250)',
             footerBg: 'rgb(246 246 250)',
             borderColor: 'rgb(var(--color-secondary),0.15)',
@@ -61,6 +71,9 @@ export const Wrapper = ({children}: WrapperType) => {
             bodySortBg: 'rgb(246 246 250)',
             rowHoverBg: 'rgb(246 246 250)',
 
+          },
+          Rate: {
+            starSize: 14,
           },
         }
       }}
@@ -81,14 +94,17 @@ export const Wrapper = ({children}: WrapperType) => {
 
 
 export const WrapSWRConfig = ({
-  options, children,
+  options,
+  children,
 }: {
   options?: SWRConfiguration
   children?: ReactNode
 }): ReactNode => {
   return (<SWRConfig
     value={{
-      revalidateOnFocus: false, revalidateIfStale: false, revalidateOnReconnect: true, ...options,
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: true, ...options,
     }}
   >
     {children}

@@ -52,24 +52,31 @@ export interface NotifyType {
 
 export interface CategoryType {
   title: string
-  code: string
+  id: string
   description?: string
   createdat?: string
   parrentId?: string
   children?: CategoryType[]
 }
 
-export enum StatusPostEnum {public = 'public', draft = 'draft', inactive = 'inactive'}
+export const StatusPostEnums: readonly ['public', 'draft', 'inactive'] = [
+  'public',
+  'draft',
+  'inactive'
+]
+
+export type  StatusPostType = typeof StatusPostEnums[number]
 
 export interface ProductType {
   title: string
+  id: string
   code?: string | null
   category?: CategoryType | null
   description?: string | null
   content?: string
   store?: number | null
   price?: number | null
-  status: string
+  status: StatusPostType
   thumnail?: ImageEntiy | null
   images?: ImageEntiy[] | null
   createdat: string
@@ -85,28 +92,55 @@ export interface TreeSelectDataType {
   checkable?: boolean
 }
 
-export const OrderStatusType: readonly ['pending', 'completed', 'canceled', 'shipping', 'draft'] = [
+export const OrderStatusEnums: readonly ['pending', 'completed', 'canceled', 'shipping', 'processing', 'draft'] = [
   'pending',
   'completed',
   'canceled',
   'shipping',
+  'processing',
   'draft'
 ]
 
-export const OrderComeFromType: readonly  ['web', 'app', 'live'] = [
+export type StatusOrderType = typeof OrderStatusEnums[number]
+
+export const OrderComeFromEnums: readonly  ['web', 'app', 'live'] = [
   'web',
   'app',
   'live'
 ]
 
+export type OrderComeFromType = typeof OrderComeFromEnums[number]
+
 export interface OrderType {
   id: string,
   code: string,
-  status: (typeof OrderStatusType)[number],
-  comeForm: (typeof OrderComeFromType)[number],
+  status: StatusOrderType,
+  comeForm: OrderComeFromType,
   total: number,
   createdAt: string,
   updateAt: string,
 }
 
-export type TableDataType<T> = T & { key: string }
+export type TableDataType<T> = T & {
+  key: string
+}
+
+
+export const StatusCommentEnums: readonly ["waiting", "public", "draft", "inactive"] = [
+  "waiting",
+  "public",
+  "draft",
+  "inactive"
+]
+
+export type StatusCommentType = typeof StatusCommentEnums[number]
+
+export type CommentType = {
+  id: string,
+  userName: string,
+  content?: string | null,
+  status: StatusCommentType,
+  star: number,
+  createdAt: string,
+  updateAt: string,
+}

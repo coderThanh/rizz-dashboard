@@ -6,7 +6,10 @@ import SystemLink from "@/app/_components/link";
 import { UsePreviewImage } from "@/hooks/file-hook";
 import { DATA_CATEGORY_PRODUCT_HAS_CHILREN } from "@/domain/data-demo";
 import { CategoryType, TableDataType } from "@/domain/type";
-import { coverCategoryToColumnCategory, coverCategoryToTreeSelectData } from "@/presentation/cover-data";
+import {
+  coverCategoryToTreeSelectData,
+  coverEntityHasChildrentToColumnType
+} from "@/presentation/cover-data";
 import { ROUTERS } from "@/ultil/router";
 import { DeleteOutlined, EditOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import {
@@ -159,7 +162,7 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
           shape={'circle'}
           icon={<EditOutlined style={{fontSize: 16}}/>}
           variant={'text'}
-          color={'blue'}
+          color={'default'}
         />
         <Popconfirm
           title="Delete the post"
@@ -172,14 +175,14 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
             shape={'circle'}
             icon={<DeleteOutlined style={{fontSize: 16}}/>}
             variant={'text'}
-            color={'danger'}
+            color={'default'}
           />
         </Popconfirm>
       </div>
     },
   ]
 
-  const data: TableDataType<CategoryType>[] = coverCategoryToColumnCategory(DATA_CATEGORY_PRODUCT_HAS_CHILREN)
+  const data: TableDataType<CategoryType>[] = coverEntityHasChildrentToColumnType(DATA_CATEGORY_PRODUCT_HAS_CHILREN)
 
   return <div className={`${props?.classname ?? ''} dashboard-box`}>
     <div className={'flex flex-wrap justify-between gap-[10px_10px]'}>
