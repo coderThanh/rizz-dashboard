@@ -1,8 +1,8 @@
 'use client'
 
 import { SystemToolTip } from "@/app/_components/tooltip";
-import { DATA_PRODUCTS } from "@/domain/data-demo";
-import { CategoryType, StatusOrderType } from "@/domain/type";
+import { DATA_PRODUCTS, DATA_TAGS, DATA_USERS } from "@/domain/data-demo";
+import { CategoryType, StatusOrderType, TagType, UserType } from "@/domain/type";
 import { Checkbox, Select, TooltipProps } from "antd";
 import { DefaultOptionType } from "rc-select/es/Select";
 
@@ -38,11 +38,15 @@ export const InputLabel = (props: InputLabelProps) => {
 type FieldCategoryProps = {
   classname?: string
   values: CategoryType[]
+  isBox?: boolean
 }
 
-export const FieldCategory = (props: FieldCategoryProps) => {
+export const FieldCategory = ({
+  isBox = true,
+  ...props
+}: FieldCategoryProps) => {
   return <div
-    className={`${props?.classname ?? ''} border border-border-low border-solid p-[15px] rounded-radius-1 overflow-y-auto scrollbar grid gap-[14px] max-h-[200px]`}
+    className={`${props?.classname ?? ''} ${isBox ? 'border border-border-low border-solid p-[15px] rounded-radius-1 max-h-[200px]' : ''} overflow-y-auto scrollbar grid gap-[14px] `}
   >
     {props.values.map((item, index) => <div key={`cat-${index}`}>
       <Checkbox
@@ -73,9 +77,34 @@ export const SelectProduct = (props: SelectProductProps) => {
     }
   })
 
-  return  <Select
+  return <Select
     showSearch
     placeholder={'Search product by name...'}
+    onSearch={() => {
+    }}
+    optionFilterProp={'label'}
+    options={options}
+    allowClear={true}
+    className={`w-full ${props?.classname ?? ''}`}
+  />
+}
+
+//
+type SelectPostProps = {
+  classname?: string
+}
+
+export const SelectPost = (props: SelectPostProps) => {
+  const options: DefaultOptionType[] = DATA_PRODUCTS.map((item) => {
+    return {
+      label: item.title,
+      value: item.code,
+    }
+  })
+
+  return <Select
+    showSearch
+    placeholder={'Search post by name...'}
     onSearch={() => {
     }}
     optionFilterProp={'label'}
@@ -91,36 +120,44 @@ type SelectUserProps = {
 }
 
 export const SelectUser = (props: SelectUserProps) => {
-  const optionsUser = [
-    {
-      value: '1',
-      label: 'Nguyen Van A'
-    },
-    {
-      value: '2',
-      label: 'Nguyen Van B'
-    },
-    {
-      value: '3',
-      label: 'Nguyen Van C'
-    },
-    {
-      value: '4',
-      label: 'Nguyen Van D'
-    },
-  ]
+  const optionsUser = DATA_USERS.map((item) => {
+    return {
+      label: item.userName,
+      value: item.id,
+    }
+  })
 
-  return <div className={`${props?.classname ?? ''}`}>
-    <Select
-      showSearch={true}
-      options={optionsUser}
-      className={`${props?.classname ?? ''} w-full`}
-      placeholder={'Search...'}
-      optionFilterProp={'label'}
-      mode={'multiple'}
-      allowClear={true}
-    />
-  </div>
+  return <Select<UserType>
+    showSearch={true}
+    options={optionsUser}
+    className={`${props?.classname ?? ''} w-full`}
+    placeholder={'Search user by name'}
+    optionFilterProp={'label'}
+    allowClear={true}
+  />
+}
+
+type SelectTagsProps = {
+  classname?: string
+}
+
+export const SelectTags = (props: SelectTagsProps) => {
+  const options = DATA_TAGS.map((item) => {
+    return {
+      label: item.title,
+      value: item.id,
+    }
+  })
+
+  return <Select<TagType>
+    mode={'tags'}
+    allowClear={true}
+    showSearch={true}
+    className={`${props?.classname ?? ''}`}
+    options={options}
+    optionFilterProp={'label'}
+    placeholder={'Select tag'}
+  />
 }
 
 
