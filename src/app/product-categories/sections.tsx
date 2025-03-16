@@ -104,6 +104,8 @@ export const BoxCreateProductCategory = (props: BoxCreateProductCategoryProps) =
           maxHeight={'400px'}
         />
       </div>
+
+      <Button color={'primary'} variant={'filled'}>Tạo danh mục</Button>
     </div>
   </div>
 }
@@ -158,7 +160,6 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
       className: 'min-w-[100px]',
       render: (_) => <div className={'flex wrap gap-[5px] items-center'}>
         <Button
-          href={ROUTERS.orderDetail}
           shape={'circle'}
           icon={<EditOutlined style={{fontSize: 16}}/>}
           variant={'text'}
@@ -197,7 +198,7 @@ export const BoxTableProductCategory = (props: BoxTableProductCategoryProps) => 
             },
             {
               value: 'delete',
-              label: 'Xoá'
+              label: <span className={'text-alert'}>Xoá</span>
             },
           ]}
         />

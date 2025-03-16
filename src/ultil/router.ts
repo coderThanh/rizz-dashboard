@@ -7,7 +7,7 @@ export const ROUTERS = {
   posts: '/posts',
   postDetail: '/posts/post-detail',
   postCategories: '/product-categories',
-  postTags: '/product-categories',
+  postTags: '/tags',
   orders: '/orders',
   orderDetail: '/orders/order-detail',
   users: '/users',
