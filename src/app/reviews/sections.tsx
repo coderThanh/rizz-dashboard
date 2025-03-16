@@ -1,5 +1,6 @@
 'use client'
 
+import { SelectProduct } from "@/app/_components/field/field";
 import { LabelCommentStatus } from "@/app/_components/label";
 import { UseCopyToClipboard } from "@/hooks/ullity-hook";
 import {
@@ -33,14 +34,10 @@ export const BoxReviews = (props: BoxReviewsProps) => {
     {/* Filter */}
     <div className={'mb-[24px] flex flex-wrap lg:flex-nowrap gap-[10px_20px]  '}>
       <div className={'inline-flex gap-[6px] flex-1 sm:flex-none'}>
-        <Select<StatusCommentType | 'delete' | 'false'>
+        <Select<StatusCommentType | 'delete' >
           className={'min-w-[200px] flex-1'}
-          defaultValue={'false'}
+          placeholder={'Hành động hàng loạt'}
           options={[
-            {
-              value: 'false',
-              label: 'Hành động hàng loạt'
-            },
             ...StatusPostEnums.map((item) => {
               return {
                 value: item,
@@ -49,7 +46,7 @@ export const BoxReviews = (props: BoxReviewsProps) => {
             }),
             {
               value: 'delete',
-              label: 'Xoá đánh giá'
+              label: <span className={'text-alert'}>Xoá đánh giá</span>
             },
           ]}
         />
@@ -60,18 +57,7 @@ export const BoxReviews = (props: BoxReviewsProps) => {
       </div>
 
       <div className={'inline-flex gap-[6px] flex-1 sm:flex-none w-[350px]'}>
-        <Select<string>
-          showSearch={true}
-          className={'min-w-[240px] flex-1'}
-          placeholder={'Tên sản phẩm..'}
-          optionFilterProp={'label'}
-          options={DATA_PRODUCTS.map((item, index) => {
-            return {
-              value: item.code,
-              label: toTitleCase(item.title)
-            }
-          })}
-        />
+       <SelectProduct/>
         <Button
           variant={'filled'}
           color={'blue'}
@@ -105,9 +91,14 @@ export const TableReview = (props: TableReviewProps) => {
     {
       title: 'Star',
       dataIndex: 'star',
-      className:' min-w-[140px]',
-      render: (value) =>  <Rate defaultValue={value} disabled className={"!inline-flex"} />,
-    },    {
+      className: ' min-w-[140px]',
+      render: (value) => <Rate
+        defaultValue={value}
+        disabled
+        className={"!inline-flex"}
+      />,
+    },
+    {
       title: 'Content',
       dataIndex: 'content',
       className: 'min-w-[200px]'
