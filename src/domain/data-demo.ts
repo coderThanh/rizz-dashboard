@@ -1,10 +1,10 @@
 import {
-  CategoryType, CommentType, OrderType, ProductType
+  CategoryType, CommentType, OrderType, PostType, ProductType, TagType, UserType
 } from "@/domain/type";
 import { getRandomInt } from "@/ultil/helper";
 
-export const getImageThumbnailRandom = () => {
-  const random = getRandomInt(1, 6);
+export const getProductThumbnailRandom = (index: number) => {
+  const random = Math.min(index, 6);
 
   return `/asset/dashboard/product-${random}.png`
 }
@@ -222,8 +222,7 @@ export const DATA_PRODUCTS: ProductType[] = [
   }
 ]
 
-
-export const DATA_CATEGORY_PRODUCT: CategoryType[]             = [
+export const DATA_CATEGORY_PRODUCT: CategoryType[] = [
   {
     "title": "Sports",
     "id": "SPORT",
@@ -255,6 +254,7 @@ export const DATA_CATEGORY_PRODUCT: CategoryType[]             = [
     "createdat": "2024-09-04T21:44:48Z"
   }
 ]
+
 export const DATA_CATEGORY_PRODUCT_HAS_CHILREN: CategoryType[] = [
   {
     "title": "Sports",
@@ -576,5 +576,388 @@ export const DATA_REVIEWS: CommentType[] = [
     "star": 1,
     "createdAt": "2024-10-23T17:00:13Z",
     "updateAt": "2024-04-29T02:22:19Z"
+  }
+]
+
+export const DATA_USERS: UserType[] = [
+  {
+    "id": "38069909-43eb-4a97-8fc2-a74d96acf239",
+    "userName": "Durward Wollacott",
+    "email": "dwollacott0@amazon.co.jp",
+    "phone": null,
+    "status": "active",
+    "role": "user",
+    "totalOrder": 59,
+    "totalCost": 3258311000,
+    "createdAt": "2025-02-03T21:58:55Z"
+  },
+  {
+    "id": "c012bd1b-cdb8-4c53-acce-88525d3cff75",
+    "userName": "La verne Ciubutaro",
+    "email": "lverne1@e-recht24.de",
+    "phone": null,
+    "status": "inactive",
+    "role": "user",
+    "totalOrder": 198,
+    "totalCost": null,
+    "createdAt": "2024-02-04T20:57:26Z"
+  },
+  {
+    "id": "a21e1ee1-7f73-48e4-8f7d-e445a8cbb768",
+    "userName": "Stevy Waryk",
+    "email": "swaryk2@utexas.edu",
+    "phone": "(218) 6149967",
+    "status": "vip",
+    "role": "user",
+    "totalOrder": 185,
+    "totalCost": 1646244000,
+    "createdAt": "2024-07-22T19:44:25Z"
+  },
+  {
+    "id": "53693847-c8a5-4649-9f10-1f438693a9e1",
+    "userName": "Miguel Dourin",
+    "email": "mdourin3@multiply.com",
+    "phone": null,
+    "status": "inactive",
+    "role": "user",
+    "totalOrder": 190,
+    "totalCost": null,
+    "createdAt": "2024-08-01T15:57:51Z"
+  },
+  {
+    "id": "7dbb4533-5370-4bf3-a1a6-505a1b023a8f",
+    "userName": "Skipton Berrill",
+    "email": "sberrill4@histats.com",
+    "phone": "(693) 7202200",
+    "status": "vip",
+    "role": "admin",
+    "totalOrder": 69,
+    "totalCost": 33265000,
+    "createdAt": "2024-05-12T02:20:59Z"
+  },
+  {
+    "id": "3c148fda-5dae-46e1-9ddb-ff7e63b87898",
+    "userName": "Faydra Arnoult",
+    "email": "farnoult5@wired.com",
+    "phone": "(374) 4732454",
+    "status": "active",
+    "role": "user",
+    "totalOrder": 182,
+    "totalCost": 4689020000,
+    "createdAt": "2025-01-09T16:59:23Z"
+  },
+  {
+    "id": "42f2907b-fe44-4288-baf6-343e1ccf4710",
+    "userName": "Felice Pegden",
+    "email": "fpegden6@fastcompany.com",
+    "phone": "(291) 4688694",
+    "status": "inactive",
+    "role": "user",
+    "totalOrder": null,
+    "totalCost": null,
+    "createdAt": "2024-04-11T14:59:08Z"
+  },
+  {
+    "id": "2ca2b4eb-4834-4da9-a18d-dc4ce85d078b",
+    "userName": "Janeta Kearton",
+    "email": "jkearton7@redcross.org",
+    "phone": null,
+    "status": "inactive",
+    "role": "admin",
+    "totalOrder": 114,
+    "totalCost": 6897947000,
+    "createdAt": "2024-03-28T04:54:17Z"
+  },
+  {
+    "id": "20fadb80-0d14-4739-a275-41ec3e7aa918",
+    "userName": "Fitz Grunwall",
+    "email": "fgrunwall8@tinyurl.com",
+    "phone": null,
+    "status": "active",
+    "role": "user",
+    "totalOrder": 199,
+    "totalCost": 7691919000,
+    "createdAt": "2024-02-07T02:35:36Z"
+  },
+  {
+    "id": "e993690b-0521-44ec-8bfb-5390a507c5e1",
+    "userName": "Delia Aime",
+    "email": "daime9@twitpic.com",
+    "phone": "(565) 2348310",
+    "status": "active",
+    "role": "user",
+    "totalOrder": null,
+    "totalCost": null,
+    "createdAt": "2025-01-04T22:31:33Z"
+  },
+  {
+    "id": "b85394f1-f5a3-4492-8ad5-4beb59c6fdea",
+    "userName": "Betta Screech",
+    "email": "bscreecha@dot.gov",
+    "phone": null,
+    "status": "vip",
+    "role": "user",
+    "totalOrder": null,
+    "totalCost": 1841236000,
+    "createdAt": "2024-02-24T21:59:41Z"
+  },
+  {
+    "id": "25c1b7c1-43b9-4897-a226-97b4602c5d0b",
+    "userName": "Jedidiah Charopen",
+    "email": "jcharopenb@constantcontact.com",
+    "phone": null,
+    "status": "vip",
+    "role": "user",
+    "totalOrder": 183,
+    "totalCost": 6773206000,
+    "createdAt": "2025-01-24T06:22:56Z"
+  },
+  {
+    "id": "1e21a06c-8bb2-4cbc-9c89-4c26395c3145",
+    "userName": "Lorilyn Ludwig",
+    "email": "lludwigc@last.fm",
+    "phone": "(695) 1921536",
+    "status": "active",
+    "role": "user",
+    "totalOrder": 101,
+    "totalCost": 933327000,
+    "createdAt": "2024-12-26T20:11:47Z"
+  },
+  {
+    "id": "35e3ec0f-7cc2-470f-b5b6-d5c10180e644",
+    "userName": "Aurilia Hackett",
+    "email": "ahackettd@free.fr",
+    "phone": "(669) 7389425",
+    "status": "active",
+    "role": "user",
+    "totalOrder": 12,
+    "totalCost": 5102126000,
+    "createdAt": "2024-06-29T02:53:25Z"
+  }
+]
+
+export const DATA_POSTS: PostType[] = [
+  {
+    "id": "c920daa5-a86b-4fd0-b2bc-dd8720277f7e",
+    "title": "ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut",
+    "status": "inactive",
+    "description": "sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis",
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-02-03T19:30:23Z"
+  },
+  {
+    "id": "7a69e560-6927-40b1-ab81-ec5153ca53ed",
+    "title": "vestibulum ante ipsum primis in",
+    "status": "public",
+    "description": null,
+    "thumnail": null,
+    "category": {
+      "title": "Helper",
+      id: "HELPER",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-03-27T05:01:28Z"
+  },
+  {
+    "id": "03d33de7-21f2-49d3-a3a9-a2509c9423b8",
+    "title": "felis sed lacus morbi sem mauris laoreet ut rhoncus",
+    "status": "public",
+    "description": "in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet",
+    "thumnail": null,
+    "category": {
+      "title": "Helper",
+      id: "HELPER",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-07-08T05:53:07Z"
+  },
+  {
+    "id": "d33512bb-4f90-471f-8f5e-6e75fc78eb20",
+    "title": "curabitur in libero ut massa volutpat convallis",
+    "status": "draft",
+    "description": "dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit",
+    "thumnail": null,
+    "category": null,
+    "content": null,
+    "createdat": "2024-12-10T22:04:14Z"
+  },
+  {
+    "id": "b5a19829-8435-4159-a1ba-6477b4628416",
+    "title": "a nibh in quis justo maecenas rhoncus aliquam lacus morbi",
+    "status": "public",
+    "description": "quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc",
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-11-19T08:29:45Z"
+  },
+  {
+    "id": "417b223a-751b-49a1-9260-e00b4e978927",
+    "title": "nunc proin at turpis a pede posuere nonummy integer non velit donec",
+    "status": "public",
+    "description": "habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec",
+    "thumnail": null,
+    "category": {
+      "title": "Helper",
+      id: "HELPER",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2025-02-19T02:47:09Z"
+  },
+  {
+    "id": "bcd672b1-a2eb-424b-9052-cdb7adec8dad",
+    "title": "imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in",
+    "status": "draft",
+    "description": "lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis",
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-03-12T12:04:18Z"
+  },
+  {
+    "id": "046c90f6-65df-4655-87c9-7eb9c5351b77",
+    "title": "in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum",
+    "status": "public",
+    "description": null,
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-03-30T02:03:00Z"
+  },
+  {
+    "id": "4d117a25-9046-4d4d-946a-acf9f300c5bd",
+    "title": "morbi odio odio elementum eu interdum",
+    "status": "inactive",
+    "description": "vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam",
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-05-05T10:26:51Z"
+  },
+  {
+    "id": "ec0f24db-6ee7-4615-9b02-f84ad8b8753c",
+    "title": "eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in",
+    "status": "draft",
+    "description": "libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus",
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-11-15T19:43:43Z"
+  },
+  {
+    "id": "abc25286-c17e-485d-a9b2-6d1d959f1d75",
+    "title": "vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere",
+    "status": "public",
+    "description": "in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus",
+    "thumnail": null,
+    "category": {
+      "title": "News",
+      id: "NEWS",
+      "description": "eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet",
+      "createdat": "2024-03-11T20:20:50Z"
+    },
+    "content": null,
+    "createdat": "2024-08-02T02:15:35Z"
+  },
+  {
+    "id": "3f59bf2b-98b7-462b-9f2a-5a9ee90c2dc9",
+    "title": "condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu",
+    "status": "inactive",
+    "description": "sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis",
+    "thumnail": null,
+    "category": null,
+    "content": null,
+    "createdat": "2024-08-16T15:13:15Z"
+  }
+]
+
+export const DATA_TAGS: TagType[] = [
+  {
+    "id": "06e58a83-541f-4135-8f0d-3286e4d8eb86",
+    "title": "vivamus",
+    "createdat": "2025-02-10T20:42:05Z"
+  },
+  {
+    "id": "5e23616a-bfd2-467f-a3bd-8c45d5c6b5b4",
+    "title": "nulla",
+    "createdat": "2024-10-27T05:21:50Z"
+  },
+  {
+    "id": "18f916d3-6fd2-49e2-8642-6773a8858e61",
+    "title": "consequat metus",
+    "createdat": "2025-02-02T16:29:45Z"
+  },
+  {
+    "id": "74f29fd1-67c4-4636-b4a4-0e3eaf2f5964",
+    "title": "lectus",
+    "createdat": "2024-11-17T05:50:13Z"
+  },
+  {
+    "id": "2dc12846-8975-44a1-bc98-907ff44eacbf",
+    "title": "a odio",
+    "createdat": "2025-02-25T12:11:41Z"
+  },
+  {
+    "id": "3e23ec75-da8e-4267-a3ca-8a87f0b7ff4a",
+    "title": "aenean sit",
+    "createdat": "2024-11-22T23:32:26Z"
+  },
+  {
+    "id": "fda072f0-3e95-45b3-8a6c-15c27364d487",
+    "title": "mauris",
+    "createdat": "2024-05-24T00:34:46Z"
+  },
+  {
+    "id": "dca1f784-e6e1-4a77-bc41-82a11bf045dc",
+    "title": "aenean auctor gravida",
+    "createdat": "2024-04-12T17:15:17Z"
+  },
+  {
+    "id": "be586e19-0708-4c32-a59e-7fe7b9c865dc",
+    "title": "nam ultrices",
+    "createdat": "2024-07-31T03:42:57Z"
+  },
+  {
+    "id": "13a103a2-b0a3-446a-9e31-52b85f9efd10",
+    "title": "euismod scelerisque",
+    "createdat": "2024-08-17T00:27:49Z"
   }
 ]

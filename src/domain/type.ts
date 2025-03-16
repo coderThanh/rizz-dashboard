@@ -59,6 +59,12 @@ export interface CategoryType {
   children?: CategoryType[]
 }
 
+export interface TagType {
+  id: string
+  title: string
+  createdat?: string
+}
+
 export const StatusPostEnums: readonly ['public', 'draft', 'inactive'] = [
   'public',
   'draft',
@@ -73,12 +79,23 @@ export interface ProductType {
   code?: string | null
   category?: CategoryType | null
   description?: string | null
-  content?: string
+  content?: string | null
   store?: number | null
   price?: number | null
   status: StatusPostType
   thumnail?: ImageEntiy | null
   images?: ImageEntiy[] | null
+  createdat: string
+}
+
+export interface PostType {
+  id: string
+  title: string
+  category?: CategoryType | null
+  description?: string | null
+  content?: string | null
+  status: StatusPostType
+  thumnail?: ImageEntiy | null
   createdat: string
 }
 
@@ -143,4 +160,32 @@ export type CommentType = {
   star: number,
   createdAt: string,
   updateAt: string,
+}
+
+
+export const UserRoleEnums: readonly ["admin", "user"] = [
+  "admin",
+  "user"
+]
+
+export type UserRoleType = typeof UserRoleEnums[number]
+
+export const UserStatusEnums: readonly ["active", "inactive", 'vip'] = [
+  "active",
+  "inactive",
+  'vip'
+]
+
+export  type UserStatusType = typeof UserStatusEnums[number]
+
+export type UserType = {
+  id: string,
+  userName: string,
+  email: string,
+  phone?: string | null,
+  status: UserStatusType,
+  role: UserRoleType,
+  totalOrder?: number | null,
+  totalCost?: number | null,
+  createdAt: string,
 }

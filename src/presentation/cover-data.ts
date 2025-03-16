@@ -1,13 +1,5 @@
 import {
-  CategoryType,
-  OrderComeFromType,
-  StatusOrderType,
-  OrderType,
-  ProductType,
-  StatusCommentType,
-  StatusPostType,
-  TableDataType,
-  TreeSelectDataType
+  CategoryType, OrderComeFromType, StatusOrderType, OrderType, ProductType, StatusCommentType, StatusPostType, TableDataType, TreeSelectDataType, UserStatusType
 } from "@/domain/type";
 
 export const coverCategoryToTreeSelectData = (data: CategoryType[]): TreeSelectDataType[] => {
@@ -44,7 +36,7 @@ export const coverEntityToColumnType = (data: Array<{
   })
 }
 
-export const translateCodeStatusToTitle    = (code: StatusOrderType | StatusCommentType | StatusPostType): string => {
+export const translateCodeStatusToTitle    = (code: StatusOrderType | StatusCommentType | StatusPostType ): string => {
   switch(code) {
     case "canceled":
       return 'đã huỷ'
@@ -68,6 +60,7 @@ export const translateCodeStatusToTitle    = (code: StatusOrderType | StatusComm
       return code;
   }
 }
+
 export const translateOrderComeFromToTitle = (code: OrderComeFromType): string => {
   switch(code) {
     case "app":
@@ -76,6 +69,19 @@ export const translateOrderComeFromToTitle = (code: OrderComeFromType): string =
       return 'của hàng'
     case "web":
       return 'website'
+    default:
+      return code;
+  }
+}
+
+export const translateUserStatusComeFromToTitle = (code: UserStatusType): string => {
+  switch(code) {
+    case "active":
+      return 'đang hoạt động'
+    case "vip":
+      return 'vip'
+    case "inactive":
+      return 'không hoạt động'
     default:
       return code;
   }
