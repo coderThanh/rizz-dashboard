@@ -135,15 +135,12 @@ export const TableOrders = (props: TableOrdersProps) => {
     {/* Filter */}
     <div className={'mb-[24px] flex flex-wrap gap-[10px_20px] '}>
       <div className={'inline-flex gap-[6px] flex-1 sm:flex-none'}>
-        <Select<StatusOrderType | 'delete' | 'false'>
+        <Select<StatusOrderType | 'delete' >
           className={'min-w-[220px] flex-1'}
-          defaultValue={'false'}
+         placeholder={'Hành động hàng loạt'}
+          allowClear={true}
           options={[
-            {
-              value: 'false',
-              label: 'Hành động hàng loạt'
-            },
-            ...OrderStatusEnums.map((item) => {
+                 ...OrderStatusEnums.map((item) => {
               return {
                 value: item,
                 label: `Chuyển sang ${translateCodeStatusToTitle(item)}`
@@ -151,7 +148,7 @@ export const TableOrders = (props: TableOrdersProps) => {
             }),
             {
               value: 'delete',
-              label: 'Xoá đơn hàng'
+              label: <span className={'text-alert'}>Xoá đơn hàng</span>
             },
           ]}
         />
