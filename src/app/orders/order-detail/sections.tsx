@@ -1,58 +1,38 @@
 'use client'
 
-import { InputLabel } from "@/app/_components/field/field";
+import { InputLabel, SelectProduct, SelectUser } from "@/app/_components/field/field";
 import SystemImage from "@/app/_components/img";
 import { LabelOrderStatus } from "@/app/_components/label";
 import SystemLink from "@/app/_components/link";
 import { DATA_PRODUCTS } from "@/domain/data-demo";
 import {
-  OrderStatusEnums,
-  StatusOrderType,
-  ProductType,
-  TableDataType
+  OrderStatusEnums, StatusOrderType, ProductType, TableDataType
 } from "@/domain/type";
 
 import { UseAddressVN } from "@/hooks/ullity-hook";
 import {
-  coverEntityToColumnType,
-  translateCodeStatusToTitle
+  coverEntityToColumnType, translateCodeStatusToTitle
 } from "@/presentation/cover-data";
 import {
-  formaaterNumber,
-  getPriceWithCurrency
+  formaaterNumber, getPriceWithCurrency
 } from "@/presentation/product-controller";
 import { DATE_FORMAT_VI } from "@/ultil/const";
 import {
-  compareStringVietnamese,
-  dayFormatDateTime,
-  toTitleCase
+  compareStringVietnamese, dayFormatDateTime, toTitleCase
 } from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
 import { notifySuccess } from "@/ultil/toast";
 import {
-  CheckOutlined,
-  CloseOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  PlusOutlined
+  CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined, PlusOutlined
 } from "@ant-design/icons";
 import {
-  Button,
-  DatePicker,
-  Dropdown,
-  Input,
-  InputNumber,
-  Modal,
-  Popconfirm,
-  Select,
-  Table
+  Button, DatePicker, Dropdown, Input, InputNumber, Modal, Popconfirm, Select, Table
 } from "antd";
 import { ColumnProps } from "antd/es/table";
 import dayjs from "dayjs";
 import { DefaultOptionType } from "rc-select/es/Select";
 import {
-  ReactNode,
-  useState
+  ReactNode, useState
 } from "react";
 
 type BoxOrderInfoProps = {
@@ -353,24 +333,7 @@ export const BoxOrderCreateInfo = (props: BoxOrderCreateInfoProps) => {
     }
   })
 
-  const optionsUser = [
-    {
-      value: '1',
-      label: 'Nguyen Van A'
-    },
-    {
-      value: '2',
-      label: 'Nguyen Van B'
-    },
-    {
-      value: '3',
-      label: 'Nguyen Van C'
-    },
-    {
-      value: '4',
-      label: 'Nguyen Van D'
-    },
-  ]
+
 
   return <div className={`${props?.classname ?? ''} grid gap-[20px]`}>
     <div>
@@ -403,13 +366,7 @@ export const BoxOrderCreateInfo = (props: BoxOrderCreateInfoProps) => {
         title={'User'}
         classname={'block w-full'}
       />
-      <Select<StatusOrderType>
-        showSearch={true}
-        options={optionsUser}
-        className={'w-full'}
-        placeholder={'Search...'}
-        optionFilterProp={'label'}
-      />
+      <SelectUser/>
     </div>
   </div>
 }
@@ -627,18 +584,14 @@ export const TableOrderItems = (props: TableOrderItemsProps) => {
 type ModelModifyOrderItemProps = {
   classname?: string
   isCreate?: boolean
-  isModalOpen: boolean, handleCancel: () => void, handleOk: () => void
+  isModalOpen: boolean,
+  handleCancel: () => void,
+  handleOk: () => void
 }
 
 export const ModelModifyOrderItem = (props: ModelModifyOrderItemProps) => {
   const product = DATA_PRODUCTS[2]
 
-  const options: DefaultOptionType[] = DATA_PRODUCTS.map((item) => {
-    return {
-      label: item.title,
-      value: item.code,
-    }
-  })
 
   return <Modal
     className={`${props?.classname ?? ''}`}
@@ -665,17 +618,7 @@ export const ModelModifyOrderItem = (props: ModelModifyOrderItemProps) => {
   >
     <div className={'mt-[20px]'}>
       {props?.isCreate && <div className={'mb-[20px]'}>
-        <Select
-          showSearch
-          placeholder={'Search product by name...'}
-          onSearch={() => {
-          }}
-          optionFilterProp={'label'}
-          options={options}
-          allowClear={true}
-          size={'large'}
-          className={'w-full'}
-        />
+        <SelectProduct/>
       </div>}
 
       {/* title */}

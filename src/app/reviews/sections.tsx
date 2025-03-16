@@ -130,7 +130,7 @@ export const TableReview = (props: TableReviewProps) => {
           <div>
             <LabelCommentStatus
               label={status}
-              classname={'relative'}
+              classname={'relative cursor-pointer'}
             />
           </div>
         </Dropdown>

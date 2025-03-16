@@ -1,8 +1,10 @@
 'use client'
 
 import { SystemToolTip } from "@/app/_components/tooltip";
-import { CategoryType } from "@/domain/type";
-import { Checkbox, TooltipProps } from "antd";
+import { DATA_PRODUCTS } from "@/domain/data-demo";
+import { CategoryType, StatusOrderType } from "@/domain/type";
+import { Checkbox, Select, TooltipProps } from "antd";
+import { DefaultOptionType } from "rc-select/es/Select";
 
 type InputLabelProps = {
   classname?: string
@@ -55,6 +57,69 @@ export const FieldCategory = (props: FieldCategoryProps) => {
         >{item.title}</Checkbox>)}
       </div> : null}
     </div>)}
+  </div>
+}
+
+//
+type SelectProductProps = {
+  classname?: string
+}
+
+export const SelectProduct = (props: SelectProductProps) => {
+  const options: DefaultOptionType[] = DATA_PRODUCTS.map((item) => {
+    return {
+      label: item.title,
+      value: item.code,
+    }
+  })
+
+  return  <Select
+    showSearch
+    placeholder={'Search product by name...'}
+    onSearch={() => {
+    }}
+    optionFilterProp={'label'}
+    options={options}
+    allowClear={true}
+    className={`w-full ${props?.classname ?? ''}`}
+  />
+}
+
+//
+type SelectUserProps = {
+  classname?: string
+}
+
+export const SelectUser = (props: SelectUserProps) => {
+  const optionsUser = [
+    {
+      value: '1',
+      label: 'Nguyen Van A'
+    },
+    {
+      value: '2',
+      label: 'Nguyen Van B'
+    },
+    {
+      value: '3',
+      label: 'Nguyen Van C'
+    },
+    {
+      value: '4',
+      label: 'Nguyen Van D'
+    },
+  ]
+
+  return <div className={`${props?.classname ?? ''}`}>
+    <Select
+      showSearch={true}
+      options={optionsUser}
+      className={`${props?.classname ?? ''} w-full`}
+      placeholder={'Search...'}
+      optionFilterProp={'label'}
+      mode={'multiple'}
+      allowClear={true}
+    />
   </div>
 }
 
