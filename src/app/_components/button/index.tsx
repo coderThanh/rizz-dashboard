@@ -1,36 +1,47 @@
 import {
-  HTMLAttributeAnchorTarget,
-  MouseEventHandler,
-  ReactElement,
+  HTMLAttributeAnchorTarget, MouseEventHandler, ReactElement, ReactNode,
 } from 'react'
 
 import React from 'react'
 import SystemLink from '@/app/_components/link/index'
 import styles from './button.module.scss'
 
-export enum SystemButtonKind {
-  text = 'text',
+
+export enum SystemButtonKindEnum {
+  text    = 'text',
   outline = 'outline',
-  default = 'default',
+  filled  = 'filled',
+  default = 'default'
 }
 
-export enum SystemButtonColor {
-  primary = 'primary',
-  primaryTransparent = 'primaryTransparent',
-  white = 'white',
-  whiteTransparent = 'whiteTransparent',
-  dark = 'dark',
-  darkTransparent = 'darkTransparent',
-  error = 'error',
-  errorTransparent = 'errorTransparent',
-  tertiary = 'tertiary',
+type SystemButtonKind = keyof typeof SystemButtonKindEnum
+
+export enum SystemButtonColorEnum {
+  primary   = 'primary',
+  bg        = 'bg',
+  opposite  = 'opposite',
+  error     = 'error',
+  process   = 'process',
+  warning   = 'warning',
+  success   = 'success',
   secondary = 'secondary',
+  tertiary  = 'tertiary',
+  white     = 'white',
+  dark      = 'dark',
 }
 
-export enum SystemButtonSize {
-  default = 'default',
-  small = 'small',
+type SystemButtonColor = keyof typeof SystemButtonColorEnum
+
+export enum SystemButtonSizeEnum {
+  small        = 'small',
+  'very-small' = 'very-small',
+  default      = 'default',
 }
+
+type SystemButtonSize = keyof typeof SystemButtonSizeEnum
+
+
+type SystemButtonShape = 'default' | 'circle'
 
 export type SystemButtonProps = {
   kind?: SystemButtonKind
@@ -39,63 +50,41 @@ export type SystemButtonProps = {
   target?: HTMLAttributeAnchorTarget
   className?: string
   classText?: string
-  classInner?: string
   text?: string
   size?: SystemButtonSize
-  children?: ReactElement
+  children?: ReactNode
+  isNoPadding?: boolean
+  shape?: SystemButtonShape
   onClick?: MouseEventHandler<HTMLDivElement>
 }
 
 // HTMLDivElement
-export default function SystemButton(
-  {
-    kind,
-    color,
-    url,
-    target,
-    className,
-    classText,
-    classInner,
-    text,
-    size,
-    children,
-    onClick,
-  }: SystemButtonProps
-) {
-  return (
-    <>
-      <SystemLink
-        className={`btn ${className ?? ''} ${styles.wrap} ${
-          styles[kind || 'default']
-        } ${styles[color || 'primary']} ${styles[size || '']}`}
-        url={url as any}
-        target={target}
-      >
-        <div
-          className={`btn-inner ${styles.inner}  ${classInner ?? ''}`}
-          onClick={(event) => onClick && onClick(event)}
-        >
-          {children}
-          {text && (
-            <span className={`${styles.textWrap} ${classText ?? ''} btn-title`}>
+export default function SystemButton({
+  kind,
+  color,
+  url,
+  target,
+  className,
+  classText,
+  isNoPadding,
+  text,
+  size,
+  children,
+  shape,
+  onClick,
+}: SystemButtonProps) {
+  const propsClient = {onClick}
+  return (<>
+    <SystemLink
+      className={` ${className ?? ''} ${styles.wrap} ${styles[kind || 'default']} ${styles[shape || 'default']} ${styles[color || 'primary']} ${styles[size || '']} ${isNoPadding && styles.noPadding}`}
+      url={url as any}
+      target={target}
+      {...propsClient}
+    >
+      {children}
+      {text && (<span className={` ${classText ?? ''}`}>
               {text}
-            </span>
-          )}
-        </div>
-      </SystemLink>
-    </>
-  )
-}
-
-export const SystemButtonIcon = (props: SystemButtonProps) => {
-  return <SystemLink
-    className={`${props?.className ?? ''} `}
-    url={props?.url as any}
-    target={props?.target}>
-    <div
-      className={`${props?.classInner ?? ''} ${styles.btnIcon} ${styles[props?.color || 'primary']} `}
-      onClick={(event) => props?.onClick && props?.onClick(event)}>
-      {props?.children}
-    </div>
-  </SystemLink>
+            </span>)}
+    </SystemLink>
+  </>)
 }

@@ -1,9 +1,9 @@
+import SystemButton from "@/app/_components/button";
 import { ROUTERS } from "@/ultil/router";
 import { useDispatch, useSelector } from 'react-redux'
 
 import { RootState } from '@/redux/store'
 import { changeAsideDesktopStatus, changeAsideMobileStatus } from '@/redux/feature/main-aside'
-import { SystemButtonColor, SystemButtonIcon } from "@/app/_components/button";
 import SvgMenu from "@/svg/menu";
 import SvgPlus from "@/svg/plus";
 import SvgNotification from "@/svg/notification";
@@ -15,10 +15,13 @@ import { ListTitleType, NotifyType } from "@/domain/type";
 import { UseEventClickOutside } from "@/hooks/ullity-hook";
 import { ListTitle } from "@/app/_components/list-title";
 
-type HeaderProps = { className?: string }
+type HeaderProps = {
+  className?: string
+}
 export const Header = (props: HeaderProps) => {
   const {
-          isOpenDesktop, isOpenMobile
+          isOpenDesktop,
+          isOpenMobile
         } = useSelector((state: RootState) => state.dashboardAside,)
 
   const dispatch = useDispatch()
@@ -26,27 +29,31 @@ export const Header = (props: HeaderProps) => {
   return (<div className={`${props?.className ?? ''} px-default py-[20px] flex items-center gap-[30px]`}>
     <div className={'flex items-center gap-[20px]'}>
       {/* Desktop */}
-      <SystemButtonIcon
-        className={'hidden md:block'}
-        color={SystemButtonColor.white}
+      <SystemButton
+        className={'!hidden md:!flex'}
+        color={'white'}
         onClick={() => dispatch(changeAsideDesktopStatus(!isOpenDesktop))}
+        shape={'circle'}
+        isNoPadding={true}
       >
         <SvgMenu
-          width={"24"}
-          height={"24"}
+          width={"20"}
+          height={"20"}
         />
-      </SystemButtonIcon>
+      </SystemButton>
       {/* Mobile */}
-      <SystemButtonIcon
-        className={'md:hidden'}
-        color={SystemButtonColor.white}
+      <SystemButton
+        className={'md:!hidden '}
+        color={'white'}
+        shape={'circle'}
+        isNoPadding={true}
         onClick={() => dispatch(changeAsideMobileStatus(!isOpenMobile))}
       >
         <SvgMenu
-          width={"24"}
-          height={"24"}
+          width={"20"}
+          height={"20"}
         />
-      </SystemButtonIcon>
+      </SystemButton>
       <p className={'hidden md:block flex-1 m-0 font-[600] text-size-3 text-title leading-[1.3]'}>Good morning,
         James!</p>
     </div>
@@ -66,19 +73,26 @@ export const ActionAdd = () => {
     {
       label: (<SystemLink url={ROUTERS.productDetail}>
         New product
-      </SystemLink>), key: '0',
-    }, {
+      </SystemLink>),
+      key: '0',
+    },
+    {
       label: (<SystemLink url={ROUTERS.orderDetail}>
         New order
-      </SystemLink>), key: '1',
-    }, {
+      </SystemLink>),
+      key: '1',
+    },
+    {
       label: (<SystemLink url={ROUTERS.postDetail}>
         New post
-      </SystemLink>), key: '2',
-    }, {
+      </SystemLink>),
+      key: '2',
+    },
+    {
       label: (<SystemLink url={ROUTERS.userDetail}>
         New user
-      </SystemLink>), key: '3',
+      </SystemLink>),
+      key: '3',
     },
   ]
 
@@ -87,12 +101,16 @@ export const ActionAdd = () => {
     trigger={['click']}
   >
     <div>
-      <SystemButtonIcon color={SystemButtonColor.white}>
+      <SystemButton
+        color={'white'}
+        shape={'circle'}
+        isNoPadding={true}
+      >
         <SvgPlus
           width={"24"}
           height={"24"}
         />
-      </SystemButtonIcon>
+      </SystemButton>
     </div>
   </Dropdown>
 }
@@ -103,7 +121,9 @@ type ActionNotifyProps = {
 }
 export const ActionNotify = (props: ActionNotifyProps) => {
   const {
-          refPopup, changeShow, isShow
+          refPopup,
+          changeShow,
+          isShow,
         } = UseEventClickOutside(false)
 
   const notifies: NotifyType[] = [
@@ -111,23 +131,28 @@ export const ActionNotify = (props: ActionNotifyProps) => {
       title: 'Your order is placed',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
       time: '2 min ago'
-    }, {
+    },
+    {
       title: 'Meeting with designers',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
       time: '10 min ago'
-    }, {
+    },
+    {
       title: 'UX 3 Task complete.',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
       time: '20 min ago'
-    }, {
+    },
+    {
       title: 'Dummy text of the printing.',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
       time: '40 min ago'
-    }, {
+    },
+    {
       title: 'Payment Successfull',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
       time: '1 hrs ago'
-    }, {
+    },
+    {
       title: 'Your order is placed',
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
       time: '2 hrs ago'
@@ -136,7 +161,9 @@ export const ActionNotify = (props: ActionNotifyProps) => {
 
   const items: TabsProps['items'] = [
     {
-      key: '1', label: 'All', children: <div>
+      key: '1',
+      label: 'All',
+      children: <div>
         <div className={'max-h-[300px] overflow-x-hidden overflow-y-auto scrollbar pt-[10px] pb-[10px] '}>
           {notifies.map((item, index) => {
             return <SystemLink
@@ -157,8 +184,11 @@ export const ActionNotify = (props: ActionNotifyProps) => {
         >View
           all</SystemLink>
       </div>,
-    }, {
-      key: '2', label: 'Projects', children: <div>
+    },
+    {
+      key: '2',
+      label: 'Projects',
+      children: <div>
         <div className={'max-h-[300px] overflow-x-hidden overflow-y-auto scrollbar pt-[10px] pb-[10px]'}>
           {notifies.slice(0, 3).map((item, index) => {
             return <SystemLink
@@ -175,24 +205,29 @@ export const ActionNotify = (props: ActionNotifyProps) => {
 
         </div>
       </div>
-    }, {
-      key: '3', label: 'Team', children: <div><Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/></div>,
+    },
+    {
+      key: '3',
+      label: 'Team',
+      children: <div><Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/></div>,
     },
   ];
 
   return <div className={`${props?.classname ?? ''} relative`}>
-    <SystemButtonIcon
-      color={SystemButtonColor.white}
+    <SystemButton
+      color={'white'}
+      shape={'circle'}
+      isNoPadding={true}
       onClick={() => changeShow(!isShow)}
     >
       <SvgNotification
         width={"24"}
         height={"24"}
       />
-    </SystemButtonIcon>
+    </SystemButton>
     <div
       ref={refPopup as LegacyRef<HTMLDivElement>}
-      className={`absolute top-full right-0 bg-bg rounded-radius-1 border border-solid border-border-low shadow-1 w-[300px] z-50 ${isShow ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
+      className={`absolute top-full right-[-30px]  bg-bg rounded-radius-1 border border-solid border-border-low shadow-1 w-[300px] z-50 ${isShow ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
     >
       <p className={'p-[20px_20px_20px] mb-0  font-[500]'}>Notifications</p>
       <Tabs
@@ -211,40 +246,52 @@ type ActionProfileProps = {
 
 export const ActionProfile = (props: ActionProfileProps) => {
   const {
-          refPopup, changeShow, isShow
+          refPopup,
+          changeShow,
+          isShow, isLeft
         } = UseEventClickOutside(true)
 
   const accountItems: ListTitleType[] = [
     {
-      title: 'Profile', materialIconName: 'person'
-    }, {
-      title: 'Earning', materialIconName: 'account_balance_wallet'
+      title: 'Profile',
+      materialIconName: 'person'
+    },
+    {
+      title: 'Earning',
+      materialIconName: 'account_balance_wallet'
     },
   ]
 
   const settingItems: ListTitleType[] = [
     {
-      title: 'Account settings', materialIconName: 'settings'
-    }, {
-      title: 'Security', materialIconName: 'lock'
-    }, {
-      title: 'Help center', materialIconName: 'help'
+      title: 'Account settings',
+      materialIconName: 'settings'
+    },
+    {
+      title: 'Security',
+      materialIconName: 'lock'
+    },
+    {
+      title: 'Help center',
+      materialIconName: 'help'
     },
   ]
 
   return <div className={`${props?.classname ?? ''} relative z-50`}>
-    <SystemButtonIcon
-      color={SystemButtonColor.white}
+    <SystemButton
+      color={'white'}
+      shape={'circle'}
+      isNoPadding={true}
       onClick={() => changeShow(!isShow)}
     >
       <SvgAccount
         width={"20"}
         height={"20"}
       />
-    </SystemButtonIcon>
+    </SystemButton>
     <div
       ref={refPopup as RefObject<HTMLDivElement>}
-      className={`absolute top-full right-0 bg-bg shadow-1 rounded-radius-1 border border-solid border-border-low w-[180px] pt-[3px] transition-all ${isShow ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      className={`absolute top-full ${isLeft ? 'left-0' : 'right-0'} bg-bg shadow-1 rounded-radius-1 border border-solid border-border-low w-[180px] pt-[3px] transition-all ${isShow ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
     >
       <span className={'text-size-small-a text-sub p-[10px_14px_3px_14px] block'}>Account</span>
       {accountItems.map((item, index) => {
