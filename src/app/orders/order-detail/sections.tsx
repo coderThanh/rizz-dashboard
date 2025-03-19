@@ -14,7 +14,7 @@ import {
   coverEntityToColumnType, translateCodeStatusToTitle
 } from "@/presentation/cover-data";
 import {
-  formaaterNumber, getPriceWithCurrency
+  formatterNumber, getPriceWithCurrency
 } from "@/presentation/product-controller";
 import { DATE_FORMAT_VI } from "@/ultil/const";
 import {
@@ -326,7 +326,7 @@ type BoxOrderCreateInfoProps = {
 }
 
 export const BoxOrderCreateInfo = (props: BoxOrderCreateInfoProps) => {
-  const optionsStatus = OrderStatusEnums.map((item) => {
+  const optionsStatus = Object.values(OrderStatusEnums).map((item) => {
     return {
       value: item,
       label: toTitleCase(translateCodeStatusToTitle(item)),
@@ -376,7 +376,7 @@ type BoxOrderActionProps = {
 }
 
 export const BoxOrderAction = (props: BoxOrderActionProps) => {
-  const optionsStatus = OrderStatusEnums.map((item) => {
+  const optionsStatus = Object.values(OrderStatusEnums).map((item) => {
     return {
       key: item,
       label: toTitleCase(translateCodeStatusToTitle(item)),
@@ -645,7 +645,7 @@ export const ModelModifyOrderItem = (props: ModelModifyOrderItemProps) => {
           <InputNumber
             defaultValue={1}
             min={1}
-            formatter={(value) => formaaterNumber(value ?? 0)}
+            formatter={(value) => formatterNumber(value ?? 0)}
           />
         </span>
       </div>

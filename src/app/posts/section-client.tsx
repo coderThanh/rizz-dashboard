@@ -26,7 +26,7 @@ export const TablePostActions = (props: TablePostActionsProps) => {
   const {
           isShow,
           changeShow,
-          refPopup
+          refPopup, isLeft
         } = UseEventClickOutside(false)
 
 
@@ -44,7 +44,7 @@ export const TablePostActions = (props: TablePostActionsProps) => {
             placeholder={'Hành động hàng loạt'}
             allowClear={true}
             options={[
-              ...StatusPostEnums.map((item) => {
+              ...Object.values(StatusPostEnums).map((item) => {
                 return {
                   value: item,
                   label: `Chuyển sang ${translateCodeStatusToTitle(item)}`
@@ -81,7 +81,7 @@ export const TablePostActions = (props: TablePostActionsProps) => {
             variant={'filled'}
             onClick={() => changeShow(!isShow)}
           >Filter</Button>
-          <div className={`bg-bg p-[10px] rounded-radius-1 shadow-1 border border-solid border-border-low absolute z-10 top-100 lg:right-0 left-0 sm:left-[unset]   ${isShow ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-0'}`}>
+          <div className={`bg-bg p-[10px] rounded-radius-1 shadow-1 border border-solid border-border-low absolute z-10 top-100 ${isLeft ? 'left-0' : 'right-0'}   ${isShow ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-0'}`}>
             {/* content */}
             <div className={'flex gap-[15px]'}>
               <div className={'flex gap-[8px] flex-col max-h-[240px] w-[200px] sm:w-[240px] overflow-x-hidden overflow-y-auto scrollbar'}>

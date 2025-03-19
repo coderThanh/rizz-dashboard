@@ -22,6 +22,6 @@ export const formatterPrice = (value: number) => {
   return format(`#,###.##`, value, {enforceMaskSign: false})
 }
 
-export  const formaaterNumber = (value: number) => {
+export  const formatterNumber = (value: number) => {
   return format('#,###.', value, {enforceMaskSign: false})
 }

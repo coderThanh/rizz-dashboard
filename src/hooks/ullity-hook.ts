@@ -7,6 +7,7 @@ import { District, Province, Ward } from '@/domain/type'
 
 export const UseEventClickOutside = (AutoCloseClickInsite: boolean) => {
   const [isShow, setIsShow] = useState(false)
+  const [isLeft, setIsLeft] = useState(false)
 
   const refPopup = useRef<null | HTMLElement>(null)
 
@@ -24,7 +25,20 @@ export const UseEventClickOutside = (AutoCloseClickInsite: boolean) => {
     }
   }, [])
 
+  const detectIsShowLeft = useCallback(() => {
+    const rectBoud = refPopup.current?.getBoundingClientRect();
+
+    const screenWidth = window.innerWidth
+
+    if(rectBoud && rectBoud.right <= screenWidth / 2) {
+      setIsLeft(true);
+    }
+
+  }, [])
+
   useEffect(() => {
+    detectIsShowLeft()
+
     if(isShow) {
       document.addEventListener('click', documentListener)
     } else {
@@ -42,7 +56,8 @@ export const UseEventClickOutside = (AutoCloseClickInsite: boolean) => {
   return {
     isShow,
     changeShow,
-    refPopup
+    refPopup,
+    isLeft
   }
 }
 

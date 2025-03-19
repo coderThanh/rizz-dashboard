@@ -38,7 +38,7 @@ export const BoxComments = (props: BoxCommentsProps) => {
           className={'min-w-[200px] flex-1'}
           placeholder={'Hành động hàng loạt'}
           options={[
-            ...StatusPostEnums.map((item) => {
+            ...Object.values(StatusPostEnums).map((item) => {
               return {
                 value: item,
                 label: `Chuyển sang ${translateCodeStatusToTitle(item)}`
@@ -98,7 +98,7 @@ export const TableComment = (props: TableCommentProps) => {
       dataIndex: 'status',
       render: (status) => {
 
-        const items: MenuProps['items'] = StatusCommentEnums.map((item) => {
+        const items: MenuProps['items'] = Object.values(StatusCommentEnums).map((item) => {
           return {
             key: item,
             label: toTitleCase(translateCodeStatusToTitle(item)),

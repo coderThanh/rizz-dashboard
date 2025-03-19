@@ -68,7 +68,7 @@ export const TableOrders = (props: TableOrdersProps) => {
       dataIndex: 'status',
       render: (status) => {
 
-        const items: MenuProps['items'] = OrderStatusEnums.map((item) => {
+        const items: MenuProps['items'] = Object.values(OrderStatusEnums).map((item) => {
           return {
             key: item,
             label: toTitleCase(translateCodeStatusToTitle(item)),
@@ -140,7 +140,7 @@ export const TableOrders = (props: TableOrdersProps) => {
          placeholder={'Hành động hàng loạt'}
           allowClear={true}
           options={[
-                 ...OrderStatusEnums.map((item) => {
+                 ...Object.values(OrderStatusEnums).map((item) => {
               return {
                 value: item,
                 label: `Chuyển sang ${translateCodeStatusToTitle(item)}`

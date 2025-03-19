@@ -65,13 +65,13 @@ export interface TagType {
   createdat?: string
 }
 
-export const StatusPostEnums: readonly ['public', 'draft', 'inactive'] = [
-  'public',
-  'draft',
-  'inactive'
-]
+export enum StatusPostEnums {
+  public = 'public',
+  draft = 'draft',
+  inactive = 'inactive'
+}
 
-export type  StatusPostType = typeof StatusPostEnums[number]
+export type StatusPostType = keyof typeof StatusPostEnums;
 
 export interface ProductType {
   title: string
@@ -109,24 +109,41 @@ export interface TreeSelectDataType {
   checkable?: boolean
 }
 
-export const OrderStatusEnums: readonly ['pending', 'completed', 'canceled', 'shipping', 'processing', 'draft'] = [
-  'pending',
-  'completed',
-  'canceled',
-  'shipping',
-  'processing',
-  'draft'
-]
+export enum OrderStatusEnums {
+  pending = 'pending',
+  completed = 'completed',
+  canceled = 'canceled',
+  shipping = 'shipping',
+  processing = 'processing',
+  draft = 'draft'
+}
 
-export type StatusOrderType = typeof OrderStatusEnums[number]
+export enum UserStatusEnums {
+  active = 'active',
+  inactive = 'inactive',
+  vip = 'vip'
+}
 
-export const OrderComeFromEnums: readonly  ['web', 'app', 'live'] = [
-  'web',
-  'app',
-  'live'
-]
+export enum StatusCommentEnums {
+  waiting = 'waiting',
+  public = 'public',
+  draft = 'draft',
+  inactive = 'inactive'
+}
 
-export type OrderComeFromType = typeof OrderComeFromEnums[number]
+export enum OrderComeFromEnums {
+  web = 'web',
+  app = 'app',
+  live = 'live'
+}
+
+export type StatusUserType = keyof typeof UserStatusEnums;
+
+export type StatusCommentType = keyof typeof StatusCommentEnums;
+
+export type OrderComeFromType = keyof typeof OrderComeFromEnums;
+
+export type StatusOrderType = keyof typeof OrderStatusEnums;
 
 export interface OrderType {
   id: string,
@@ -143,15 +160,6 @@ export type TableDataType<T> = T & {
 }
 
 
-export const StatusCommentEnums: readonly ["waiting", "public", "draft", "inactive"] = [
-  "waiting",
-  "public",
-  "draft",
-  "inactive"
-]
-
-export type StatusCommentType = typeof StatusCommentEnums[number]
-
 export type CommentType = {
   id: string,
   userName: string,
@@ -162,28 +170,19 @@ export type CommentType = {
   updateAt: string,
 }
 
+export enum UserRoleEnums {
+  admin = 'admin',
+  user = 'user'
+}
 
-export const UserRoleEnums: readonly ["admin", "user"] = [
-  "admin",
-  "user"
-]
-
-export type UserRoleType = typeof UserRoleEnums[number]
-
-export const UserStatusEnums: readonly ["active", "inactive", 'vip'] = [
-  "active",
-  "inactive",
-  'vip'
-]
-
-export  type UserStatusType = typeof UserStatusEnums[number]
+export type UserRoleType = keyof typeof UserRoleEnums
 
 export type UserType = {
   id: string,
   userName: string,
   email: string,
   phone?: string | null,
-  status: UserStatusType,
+  status: StatusUserType,
   role: UserRoleType,
   totalOrder?: number | null,
   totalCost?: number | null,
