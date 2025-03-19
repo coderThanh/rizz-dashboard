@@ -1,7 +1,7 @@
 import {
-  StatusCommentType, StatusOrderType, StatusPostType
+  StatusCommentType, StatusOrderType, StatusPostType, StatusUserType
 } from "@/domain/type";
-import { translateCodeStatusToTitle } from "@/presentation/cover-data";
+import { translateCodeStatusToTitle, translateUserStatusComeFromToTitle } from "@/presentation/cover-data";
 import { toTitleCase } from "@/ultil/helper";
 import {
   Tag, TagProps
@@ -107,5 +107,36 @@ export const LabelCommentStatus = (props: LabelCommentStatusProps) => {
     className={`${props?.classname ?? ''} ${props?.size == 'large' && '!text-[13px] !p-[3px_10px] !rounded-radius-1'}`}
   >
     {toTitleCase(translateCodeStatusToTitle(props.label))}
+  </Tag>
+}
+
+
+type LabelUserStatusProps = {
+  classname?: string
+  size?: 'large' | 'default'
+  label: StatusUserType
+  icon?: ReactNode
+}
+
+export const LabelUserStatus = (props: LabelUserStatusProps) => {
+  let tagColor: TagProps['color'];
+
+  switch(props.label) {
+    case 'vip':
+      tagColor = 'gold';
+      break;
+    case 'inactive':
+      tagColor = 'default';
+      break;
+    default:
+      tagColor = 'processing'
+  }
+
+  return <Tag
+    icon={props?.icon}
+    color={tagColor}
+    className={`${props?.classname ?? ''} ${props?.size == 'large' && '!text-[13px] !p-[3px_10px] !rounded-radius-1'}`}
+  >
+    {toTitleCase(translateUserStatusComeFromToTitle(props.label))}
   </Tag>
 }

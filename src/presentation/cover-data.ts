@@ -1,5 +1,5 @@
 import {
-  CategoryType, OrderComeFromType, StatusOrderType, OrderType, ProductType, StatusCommentType, StatusPostType, TableDataType, TreeSelectDataType, UserStatusType
+  CategoryType, OrderComeFromType, StatusOrderType, StatusCommentType, StatusPostType, TableDataType, TreeSelectDataType, StatusUserType
 } from "@/domain/type";
 
 export const coverCategoryToTreeSelectData = (data: CategoryType[]): TreeSelectDataType[] => {
@@ -74,10 +74,10 @@ export const translateOrderComeFromToTitle = (code: OrderComeFromType): string =
   }
 }
 
-export const translateUserStatusComeFromToTitle = (code: UserStatusType): string => {
+export const translateUserStatusComeFromToTitle = (code: StatusUserType): string => {
   switch(code) {
     case "active":
-      return 'đang hoạt động'
+      return 'hoạt động'
     case "vip":
       return 'vip'
     case "inactive":

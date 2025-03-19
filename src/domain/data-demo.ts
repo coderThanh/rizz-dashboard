@@ -8,6 +8,11 @@ export const getProductThumbnailRandom = (index: number) => {
 
   return `/asset/dashboard/product-${random}.png`
 }
+export const getPeopleThumbnailRandom = (index: number) => {
+  const random = Math.min(index, 5);
+
+  return `/asset/dashboard/people-${random}.jpg`
+}
 
 export const DATA_PRODUCTS: ProductType[] = [
   {
