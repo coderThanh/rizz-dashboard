@@ -16,4 +16,5 @@ export const ROUTERS = {
   reviewDetail: '/reviews/review-detail',
   comments: '/comments',
   commentDetail: '/comments/comment-detail',
+  chat: '/chat',
 }

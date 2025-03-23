@@ -22,7 +22,7 @@ export default {
         bg: 'rgb(var(--bg))',
         'bg-2nd': 'rgb(var(--bg-2nd))',
         'bg-opposite': 'rgb(var(--bg-opposite))',
-        'border-low': 'rgb(var(--color-secondary),0.2)',
+        'border-low': 'rgb(var(--color-secondary)/0.3)',
       },
       spacing: {'default': '16px'},
       boxShadow: {

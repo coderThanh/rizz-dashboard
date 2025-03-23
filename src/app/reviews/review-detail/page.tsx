@@ -1,4 +1,4 @@
-import { BoxPostStatus } from "@/app/_components/box";
+import { BoxPostStatus } from "@/app/_components/box/box-status";
 import { DashboardLayout } from "@/app/_components/system-layout";
 import { BoxReviewDetailGeneral } from "@/app/reviews/review-detail/section-client";
 

@@ -45,7 +45,7 @@ export const Wrapper = ({children}: WrapperType) => {
           colorPrimaryText: '#30b760',
           colorPrimaryTextHover: '#57d181',
           colorPrimaryTextActive: '#22974c',
-          colorBorder: 'rgb(var(--color-secondary),0.3)'
+          colorBorder: 'rgb(var(--color-secondary)/0.3)'
         },
         components: {
           Button: {
@@ -65,7 +65,7 @@ export const Wrapper = ({children}: WrapperType) => {
           Table: {
             headerBg: 'rgb(246 246 250)',
             footerBg: 'rgb(246 246 250)',
-            borderColor: 'rgb(var(--color-secondary),0.15)',
+            borderColor: 'rgb(var(--color-secondary)/0.15)',
             headerSortActiveBg: 'rgb(228 231 240)',
             headerSortHoverBg: 'rgb(228 231 240)',
             bodySortBg: 'rgb(246 246 250)',

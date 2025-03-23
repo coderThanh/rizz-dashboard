@@ -7,7 +7,7 @@ export type SystemImageProps = {
   classNameImg?: string
   classNameOverlay?: string
   ratio?: number
-  radius?: number
+  radius?: number | string
   sizes?: string
   src: string
   alt: string
@@ -38,17 +38,14 @@ export default function SystemImage({
   height,
   isSketch,
 }: SystemImageProps) {
-  return (
-    <div
+  return (<div
       className={`imgWrap ${className ?? ''}`}
       style={{
         ...style,
       }}
     >
       <div
-        className={`img-inner relative z-[5] overflow-hidden ${
-          classNameInner ?? ''
-        } ${isSketch ? 'sketch-loading' : ''}`}
+        className={`img-inner relative z-[5] overflow-hidden ${classNameInner ?? ''} ${isSketch ? 'sketch-loading' : ''}`}
         style={{
           paddingTop: ratio ? `${ratio}%` : undefined,
           borderRadius: radius,
@@ -57,25 +54,20 @@ export default function SystemImage({
         <Image
           src={src}
           alt={alt}
-          fill={ratio ? true : false}
+          fill={!!ratio}
           width={ratio ? undefined : width}
           height={ratio ? undefined : height}
-          style={{ ...styleImg }}
+          style={{...styleImg}}
           priority={priority}
           sizes={ratio ? sizes ?? '100%' : undefined}
-          className={`max-w-full m-0 ${
-            ratio ? 'object-center object-cover' : ''
-          } ${classNameImg}`}
+          className={`max-w-full m-0 ${ratio ? 'object-center object-cover' : ''} ${classNameImg}`}
         />
         <div
-          className={`absolute top-0 left-0 right-0 bottom-0 z-10 ${
-            classNameOverlay ?? ''
-          }`}
+          className={`absolute top-0 left-0 right-0 bottom-0 z-10 ${classNameOverlay ?? ''}`}
           style={{
             backgroundColor: overlayCover,
           }}
         ></div>
       </div>
-    </div>
-  )
+    </div>)
 }

@@ -10,8 +10,9 @@ import {
 import {
   coverEntityToColumnType, translateCodeStatusToTitle, translateOrderComeFromToTitle
 } from "@/presentation/cover-data";
+import { getPriceWithCurrency } from "@/presentation/product-controller";
 import {
-  dayjsLocale, toTitleCase
+  dayFormatDate, dayjsLocale, toTitleCase
 } from "@/ultil/helper";
 import { ROUTERS } from "@/ultil/router";
 import {
@@ -26,6 +27,7 @@ import React from "react";
 
 type TableOrdersProps = {
   classname?: string
+  hiddenAction?: boolean
 }
 
 export const TableOrders = (props: TableOrdersProps) => {
@@ -61,6 +63,7 @@ export const TableOrders = (props: TableOrdersProps) => {
         'descend',
         'ascend'
       ],
+      render: (value) => dayFormatDate(value),
       sorter: (a, b) => 0,
     },
     {
@@ -91,6 +94,15 @@ export const TableOrders = (props: TableOrdersProps) => {
         'ascend'
       ],
       sorter: (a, b) => 0,
+    },
+    {
+      title: 'Price',
+      dataIndex: 'total',
+      sortDirections: [
+        'descend',
+        'ascend'
+      ],
+      render: (value) => getPriceWithCurrency(value)
     },
     {
       title: 'Come from',
@@ -134,13 +146,13 @@ export const TableOrders = (props: TableOrdersProps) => {
   return <div className={`${props?.classname ?? ''} `}>
     {/* Filter */}
     <div className={'mb-[24px] flex flex-wrap gap-[10px_20px] '}>
-      <div className={'inline-flex gap-[6px] flex-1 sm:flex-none'}>
-        <Select<StatusOrderType | 'delete' >
+      {!props.hiddenAction && <div className={'inline-flex gap-[6px] flex-1 sm:flex-none'}>
+        <Select<StatusOrderType | 'delete'>
           className={'min-w-[220px] flex-1'}
-         placeholder={'Hành động hàng loạt'}
+          placeholder={'Hành động hàng loạt'}
           allowClear={true}
           options={[
-                 ...Object.values(OrderStatusEnums).map((item) => {
+            ...Object.values(OrderStatusEnums).map((item) => {
               return {
                 value: item,
                 label: `Chuyển sang ${translateCodeStatusToTitle(item)}`
@@ -156,7 +168,7 @@ export const TableOrders = (props: TableOrdersProps) => {
           variant={'filled'}
           color={'blue'}
         >Áp dụng</Button>
-      </div>
+      </div>}
 
       <div className={'inline-flex gap-[6px] flex-1 sm:flex-none'}>
         <Select
