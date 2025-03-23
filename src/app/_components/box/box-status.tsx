@@ -1,7 +1,6 @@
 'use client'
 
 import { LabelPostStatus } from "@/app/_components/label";
-import { SystemToolTip } from "@/app/_components/tooltip";
 import { StatusPostEnums } from "@/domain/type";
 import { translateCodeStatusToTitle } from "@/presentation/cover-data";
 import { dayFormatDateTime, toTitleCase } from "@/ultil/helper";
@@ -16,9 +15,7 @@ type BoxPostStatusProps = {
   classname?: string
   children?: ReactNode
 }
-
-const FieldEditor = dynamic(() => import('@/app/_components/field/ckeditor'), {ssr: false})
-
+dynamic(() => import('@/app/_components/field/ckeditor'), {ssr: false});
 export const BoxPostStatus = (props: BoxPostStatusProps) => {
   const status: MenuProps['items'] = Object.values(StatusPostEnums).map((item, index) => {
     return {
@@ -105,36 +102,6 @@ const ListItemStatus = (props: ListItemStatusProps) => {
   </div>
 }
 
-type BoxDescriptionSortProps = {
-  classname?: string
-  children?: ReactNode
-}
 
-export const BoxDescriptionSort = (props: BoxDescriptionSortProps) => {
-  return <div className={`${props?.classname ?? ''} dashboard-box`}>
-    <h4 className={'font-[600] text-[1rem] mb-[15px]'}>Mô tả
-      ngắn <SystemToolTip title={"Hiển thị SEO thẻ meta description"}/>
-    </h4>
-    <FieldEditor
-      minHeight={'120px'}
-      maxHeight={'300px'}
-    />
-  </div>
-}
 
-type BoxContentProps = {
-  classname?: string
-  children?: ReactNode
-}
-
-export const BoxContent = (props: BoxContentProps) => {
-  return <div className={`${props?.classname ?? ''} dashboard-box`}>
-    <h4 className={'font-[600] text-[1rem] mb-[15px]'}>Nội dung chính
-    </h4>
-    <FieldEditor
-      minHeight={'400px'}
-      maxHeight={'70vh'}
-    />
-  </div>
-}
 

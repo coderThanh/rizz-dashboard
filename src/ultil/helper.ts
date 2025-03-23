@@ -1,10 +1,10 @@
-import dayjs from 'dayjs';
 import 'dayjs/locale/vi';
-import utc from 'dayjs/plugin/utc'
-import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { DATE_FORMAT_VI, TIME_FORMAT_VI, TOKEN } from '@/ultil/const'
 
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
+import utc from 'dayjs/plugin/utc'
 
 //  --------
 export const isConnectAPI = () => process.env.NEXT_PUBLIC_HAS_API_DB_CONECT == 'true'
@@ -231,7 +231,7 @@ export function removeObjectKeyEmpty(object: { [key: string]: any }) {
   return newObject
 }
 
-export function generatString(length: number) {
+export function generateString(length: number) {
   let result             = ''
   const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
   const charactersLength = characters.length

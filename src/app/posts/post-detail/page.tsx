@@ -1,4 +1,6 @@
-import { BoxContent, BoxDescriptionSort, BoxPostStatus } from "@/app/_components/box/box-status";
+import { BoxContent } from "@/app/_components/box/box-content";
+import { BoxDescriptionSort } from "@/app/_components/box/box-description";
+import { BoxPostStatus } from "@/app/_components/box/box-status";
 import { DashboardLayout } from "@/app/_components/system-layout";
 import { BoxPostDetailGeneral } from "@/app/posts/post-detail/section-client";
 
